@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Grow Together 💖 | Dumbo & Butku</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          },
+          screens: {
+            'xs': '380px',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Safe-area insets for notched devices & modern mobile browsers */
+    :root {
+      --sat: env(safe-area-inset-top, 0px);
+      --sab: env(safe-area-inset-bottom, 0px);
+    }
+    
+    body {
+      background: radial-gradient(circle at 10% 10%, #fef2f8 0%, #f5f3ff 45%, #eff6ff 100%);
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding-bottom: calc(5.2rem + var(--sab));
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    @media (min-width: 1024px) {
+      body {
+        padding-bottom: 2rem;
+      }
+    }
+
+    /* Glassmorphism card utility */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 8px 24px -4px rgba(236, 72, 153, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Custom smooth scrollbar */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    
+    /* Touch target min-height utility */
+    .touch-target {
+      min-width: 44px;
+      min-height: 44px;
+    }
+
+    /* Smooth tab transition */
+    .tab-content {
+      animation: fadeIn 0.2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="text-slate-800 antialiased font-sans selection:bg-pink-200">
+
+  <!-- ================= TOP STICKY NOTIFICATION LOVE NOTE BANNER ================= -->
+  <div id="partnerBanner" class="sticky top-0 z-40 transition-all duration-300 shadow-sm border-b backdrop-blur-md">
+    <!-- Injected via JS -->
+  </div>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <main class="max-w-6xl mx-auto px-3.5 sm:px-6 lg:px-8 py-3.5 sm:py-6 space-y-4 sm:space-y-6">
+
+    <!-- Top App Bar: Brand + Quick Partner Switcher + Actions -->
+    <header class="glass-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 flex flex-col md:flex-row items-center justify-between gap-3.5">
+      
+      <!-- Brand & Date Context -->
+      <div class="flex items-center gap-3 w-full md:w-auto">
+        <div class="w-11 h-11 sm:w-13 sm:h-13 rounded-2xl flex items-center justify-center text-2xl shadow-sm bg-gradient-to-tr from-pink-400 via-rose-400 to-indigo-500 text-white flex-shrink-0">
+          💖
+        </div>
+        <div class="min-w-0 flex-1">
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg sm:text-2xl font-black tracking-tight bg-gradient-to-r from-pink-600 to-indigo-600 bg-clip-text text-transparent truncate">
+              Grow Together
+            </h1>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-pink-100 text-pink-700 uppercase">Couple Sync</span>
+          </div>
+          <p class="text-[11px] sm:text-xs text-slate-500 font-medium truncate">
+            Dumbo <span class="text-blue-600 font-semibold">(Rakeshkumar)</span> &amp; Butku <span class="text-pink-600 font-semibold">(Diya)</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Thumb-Friendly Partner Segmented Switcher & Quick Buttons -->
+      <div class="flex items-center justify-between md:justify-end gap-2 w-full md:w-auto">
+        <!-- Segmented Control (Large 44px touch targets) -->
+        <div class="bg-slate-100/90 p-1 rounded-2xl flex items-center shadow-inner border border-slate-200/70 flex-1 sm:flex-initial">
+          <button id="btnSwitchDumbo" onclick="switchUser('dumbo')" class="touch-target flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200">
+            <span class="text-base sm:text-lg">🐘</span>
+            <div class="text-left leading-tight">
+              <span>Dumbo</span>
+              <span class="hidden xs:block text-[9px] font-normal opacity-75">Rakesh</span>
+            </div>
+          </button>
+          <button id="btnSwitchButku" onclick="switchUser('butku')" class="touch-target flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200">
+            <span class="text-base sm:text-lg">🐧</span>
+            <div class="text-left leading-tight">
+              <span>Butku</span>
+              <span class="hidden xs:block text-[9px] font-normal opacity-75">Diya</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- Note Button -->
+        <button onclick="openEndDayModal()" class="touch-target px-3 sm:px-4 py-2 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold text-xs shadow-sm flex items-center gap-1.5 flex-shrink-0" title="Leave Love Note for Partner">
+          <span class="text-sm">💌</span>
+          <span class="hidden sm:inline">Love Note</span>
+        </button>
+
+        <!-- More actions: Backup & Reset Dropdown -->
+        <div class="relative flex-shrink-0">
+          <button onclick="toggleActionMenu()" class="touch-target w-11 h-11 rounded-xl bg-white border border-slate-200 text-slate-600 flex items-center justify-center shadow-xs hover:bg-slate-50 transition" title="Settings & Backup">
+            ⚙️
+          </button>
+          <div id="actionMenuDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-slate-100 py-1.5 z-50 text-xs font-semibold">
+            <button onclick="exportDataBackup()" class="w-full text-left px-4 py-2.5 hover:bg-slate-50 text-slate-700 flex items-center gap-2">
+              <span>📥 Export Backup (JSON)</span>
+            </button>
+            <label class="w-full text-left px-4 py-2.5 hover:bg-slate-50 text-slate-700 flex items-center gap-2 cursor-pointer">
+              <span>📤 Restore Backup</span>
+              <input type="file" accept=".json" onchange="importDataBackup(event)" class="hidden" />
+            </label>
+            <div class="border-t border-slate-100 my-1"></div>
+            <button onclick="promptResetAllData()" class="w-full text-left px-4 py-2.5 hover:bg-rose-50 text-rose-600 flex items-center gap-2">
+              <span>🗑️ Reset All to Zero</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Context Date & Day Quick Navigator -->
+    <div class="glass-card rounded-2xl p-3 sm:p-4 flex flex-col xs:flex-row items-center justify-between gap-2.5">
+      <div class="flex items-center gap-2.5 w-full xs:w-auto">
+        <span id="currentUserAvatar" class="text-2xl p-2 rounded-xl bg-white shadow-xs">🐘</span>
+        <div class="min-w-0">
+          <div class="flex items-center gap-1.5">
+            <h2 id="currentUserNameDisplay" class="text-xs sm:text-sm font-extrabold text-slate-800 truncate">Dumbo (Rakeshkumar)</h2>
+            <span id="currentUserRoleTag" class="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-blue-100 text-blue-700">Active</span>
+          </div>
+          <p class="text-[11px] text-slate-500 font-medium truncate">Day tracker: <span id="currentDateDisplay" class="font-bold text-slate-700">Today</span></p>
+        </div>
+      </div>
+
+      <!-- Date selector with touch styling -->
+      <div class="flex items-center gap-2 w-full xs:w-auto justify-end">
+        <button onclick="shiftDate(-1)" class="touch-target w-9 h-9 rounded-xl bg-white border border-slate-200 text-slate-700 flex items-center justify-center font-bold text-xs hover:bg-slate-50 shadow-xs" title="Previous Day">◀</button>
+        <input type="date" id="dateSelectPicker" onchange="onDateChanged(this.value)" class="touch-target text-xs font-semibold border border-slate-200 rounded-xl px-2.5 py-1.5 bg-white text-slate-700 shadow-xs focus:ring-2 focus:ring-pink-300 focus:outline-none" />
+        <button onclick="shiftDate(1)" class="touch-target w-9 h-9 rounded-xl bg-white border border-slate-200 text-slate-700 flex items-center justify-center font-bold text-xs hover:bg-slate-50 shadow-xs" title="Next Day">▶</button>
+        <button onclick="jumpToToday()" class="touch-target px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-[11px] font-bold text-slate-700 shadow-xs">Today</button>
+      </div>
+    </div>
+
+    <!-- Desktop Tab Navigation (Hidden on small mobile; synchronized with mobile bottom bar) -->
+    <nav class="hidden md:flex items-center gap-2 border-b border-slate-200/80 pb-2 overflow-x-auto no-scrollbar">
+      <button onclick="switchTab('tasks')" class="desk-tab-btn px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 bg-slate-900 text-white shadow-xs" data-tab="tasks">
+        <span>🎯 Daily Tasks</span>
+      </button>
+      <button onclick="switchTab('gifts')" class="desk-tab-btn px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 bg-white text-slate-600 hover:bg-slate-100" data-tab="gifts">
+        <span>🎁 Gift Coupons</span>
+      </button>
+      <button onclick="switchTab('growth')" class="desk-tab-btn px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 bg-white text-slate-600 hover:bg-slate-100" data-tab="growth">
+        <span>🌱 Mutual Reflection</span>
+      </button>
+      <button onclick="switchTab('analytics')" class="desk-tab-btn px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 bg-white text-slate-600 hover:bg-slate-100" data-tab="analytics">
+        <span>📈 Growth Charts</span>
+      </button>
+      <button onclick="switchTab('history')" class="desk-tab-btn px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 bg-white text-slate-600 hover:bg-slate-100" data-tab="history">
+        <span>📅 Past Log</span>
+      </button>
+    </nav>
+
+    <!-- Top KPI Highlights Grid (Day-over-day, Weekly, Streak, Reward Status) -->
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
+      
+      <!-- Day Over Day Growth -->
+      <div class="glass-card p-3 sm:p-4 rounded-2xl flex flex-col justify-between">
+        <div class="flex items-center justify-between gap-1">
+          <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 truncate">DoD Growth</span>
+          <span id="dodGrowthBadge" class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600">0%</span>
+        </div>
+        <div class="mt-2">
+          <div id="dodGrowthValue" class="text-xl sm:text-2xl font-black text-slate-800">0%</div>
+          <p id="dodGrowthSub" class="text-[10px] sm:text-xs text-slate-500 truncate mt-0.5">vs yesterday</p>
+        </div>
+      </div>
+
+      <!-- Weekly Improvement Index -->
+      <div class="glass-card p-3 sm:p-4 rounded-2xl flex flex-col justify-between">
+        <div class="flex items-center justify-between gap-1">
+          <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 truncate">Weekly Avg</span>
+          <span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-indigo-100 text-indigo-700">7-Day</span>
+        </div>
+        <div class="mt-2">
+          <div id="weeklyScoreValue" class="text-xl sm:text-2xl font-black text-indigo-600">0/100</div>
+          <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden mt-1.5">
+            <div id="weeklyScoreBar" class="bg-gradient-to-r from-blue-500 to-indigo-500 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mutual Sync Streak -->
+      <div class="glass-card p-3 sm:p-4 rounded-2xl flex flex-col justify-between">
+        <div class="flex items-center justify-between gap-1">
+          <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 truncate">Sync Streak</span>
+          <span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-800">🔥 Sync</span>
+        </div>
+        <div class="mt-2">
+          <div id="streakCountValue" class="text-xl sm:text-2xl font-black text-amber-600">0 Days</div>
+          <p class="text-[10px] sm:text-xs text-slate-500 truncate mt-0.5">Keep in sync daily</p>
+        </div>
+      </div>
+
+      <!-- Reward Box Status -->
+      <div class="glass-card p-3 sm:p-4 rounded-2xl flex flex-col justify-between border-pink-200">
+        <div class="flex items-center justify-between gap-1">
+          <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-pink-600 truncate">Gift Status</span>
+          <span id="giftStatusTag" class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600">0%</span>
+        </div>
+        <div class="mt-2">
+          <div id="giftStatusTitle" class="text-sm sm:text-base font-extrabold text-slate-800 truncate">Locked 🔒</div>
+          <p id="giftStatusSub" class="text-[10px] sm:text-xs text-pink-500 font-semibold truncate mt-0.5">80% unlocks coupon</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 1: DAILY TASKS ================= -->
+    <section id="tab-tasks" class="tab-content space-y-4">
+      <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6">
+        
+        <!-- Header & Progress bar -->
+        <div class="flex items-center justify-between gap-3 pb-3 border-b border-slate-100">
+          <div>
+            <h3 class="text-base sm:text-lg font-black text-slate-800 flex items-center gap-1.5">
+              <span>🎯 Day-to-Day Task Checklist</span>
+            </h3>
+            <p class="text-[11px] sm:text-xs text-slate-500">Tick off tasks as you accomplish them</p>
+          </div>
+          <div class="text-right">
+            <span id="taskProgressPercentage" class="text-xl sm:text-2xl font-black text-pink-600">0%</span>
+            <span class="block text-[10px] text-slate-400 font-semibold" id="taskFractionCompleted">0/0 done</span>
+          </div>
+        </div>
+
+        <!-- Visual Progress Bar with milestones at 80% and 100% -->
+        <div class="relative my-4">
+          <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden p-0.5 border border-slate-200/60">
+            <div id="taskProgressBar" class="h-full rounded-full transition-all duration-500 bg-gradient-to-r from-pink-400 via-rose-500 to-indigo-500" style="width: 0%"></div>
+          </div>
+          <!-- Milestone markers -->
+          <div class="flex justify-between text-[10px] font-bold text-slate-400 mt-1 px-1">
+            <span>0%</span>
+            <span class="text-purple-600">80% (Gift Box 🎁)</span>
+            <span class="text-amber-600">100% (Jackpot ⭐)</span>
+          </div>
+        </div>
+
+        <!-- Add Task Form: Mobile Touch Optimized -->
+        <form onsubmit="handleAddTask(event)" class="mb-4 p-2.5 sm:p-3.5 bg-slate-50 rounded-2xl border border-slate-200/70 flex flex-col sm:flex-row gap-2">
+          <input type="text" id="newTaskInput" placeholder="Add custom goal or habit..." required class="touch-target flex-1 text-xs sm:text-sm bg-white border border-slate-200 rounded-xl px-3 py-2 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-pink-300" />
+          
+          <div class="flex items-center gap-2">
+            <select id="newTaskCategory" class="touch-target text-xs bg-white border border-slate-200 rounded-xl px-2.5 py-2 text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-pink-300 flex-1 sm:flex-initial">
+              <option value="Health">💪 Health</option>
+              <option value="Work">💼 Work &amp; Study</option>
+              <option value="Personal">🧘 Personal</option>
+              <option value="Habits">🌱 Habits</option>
+              <option value="Relationship">💖 Couple</option>
+            </select>
+            <button type="submit" class="touch-target px-4 py-2 bg-slate-900 hover:bg-black text-white text-xs font-extrabold rounded-xl shadow-sm transition flex-shrink-0 flex items-center justify-center gap-1">
+              <span>+ Add</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Swipeable Category Filter Pills -->
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-2 no-scrollbar text-xs mb-3">
+          <button onclick="filterTasks('all')" class="cat-filter-btn touch-target px-3.5 py-1.5 rounded-xl font-bold bg-slate-900 text-white flex-shrink-0" data-cat="all">All</button>
+          <button onclick="filterTasks('Health')" class="cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50" data-cat="Health">💪 Health</button>
+          <button onclick="filterTasks('Work')" class="cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50" data-cat="Work">💼 Work</button>
+          <button onclick="filterTasks('Personal')" class="cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50" data-cat="Personal">🧘 Personal</button>
+          <button onclick="filterTasks('Habits')" class="cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50" data-cat="Habits">🌱 Habits</button>
+          <button onclick="filterTasks('Relationship')" class="cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50" data-cat="Relationship">💖 Couple</button>
+        </div>
+
+        <!-- Task List Items (min 44px tap targets) -->
+        <div id="taskListContainer" class="space-y-2 max-h-[480px] overflow-y-auto pr-0.5">
+          <!-- Dynamic tasks rendered via JavaScript -->
+        </div>
+
+        <!-- Footer claim button -->
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+          <span class="text-slate-500 text-[11px]">80% = Surprise Gift Coupon 🎁</span>
+          <button onclick="checkAndTriggerCelebration(true)" class="touch-target px-3 py-1.5 rounded-xl bg-pink-50 hover:bg-pink-100 text-pink-700 font-bold transition flex items-center gap-1">
+            <span>Claim / Inspect Reward ✨</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 2: COUPON REWARDS & GIFTS ================= -->
+    <section id="tab-gifts" class="tab-content hidden space-y-4">
+      <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 border-pink-200">
+        <div class="flex items-center justify-between gap-3 mb-4">
+          <div>
+            <h3 class="text-base sm:text-lg font-black text-slate-800 flex items-center gap-1.5">
+              <span>🎁 Couple Privilege &amp; Reward Coupons</span>
+            </h3>
+            <p class="text-[11px] sm:text-xs text-slate-500">Earned when daily tasks reach 80% or 100% fulfillment</p>
+          </div>
+          <span class="text-3xl">🎟️</span>
+        </div>
+
+        <!-- Coupons Grid -->
+        <div id="giftCouponsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 3: MUTUAL REFLECTION & CONSTRUCTIVE FEEDBACK ================= -->
+    <section id="tab-growth" class="tab-content hidden space-y-4">
+      <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6">
+        <div class="flex items-center justify-between gap-3 mb-3">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🌱</span>
+            <div>
+              <h3 class="text-base sm:text-lg font-black text-slate-800">Mutual Growth Reflection</h3>
+              <p id="feedbackTargetSub" class="text-[11px] sm:text-xs text-slate-500">Constructive feedback for partner</p>
+            </div>
+          </div>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">Safe Space</span>
+        </div>
+
+        <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+          Growth comes from honesty delivered with love. Highlight proud moments and gently discuss any mistake so both can improve hand-in-hand.
+        </p>
+
+        <div class="space-y-3.5">
+          <!-- Positive / Where they shined -->
+          <div class="p-3 sm:p-4 rounded-2xl bg-amber-50/80 border border-amber-200">
+            <div class="flex items-center gap-1.5 mb-1.5">
+              <span class="text-amber-500 text-sm">✨</span>
+              <h4 id="feedbackShineLabel" class="text-xs font-bold text-amber-900 uppercase tracking-wide">Where partner shined today:</h4>
+            </div>
+            <textarea id="feedbackShineInput" rows="2" placeholder="Tell what they did great today..." class="w-full text-xs bg-white border border-amber-200 rounded-xl p-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-300"></textarea>
+          </div>
+
+          <!-- Constructive / Area to grow -->
+          <div class="p-3 sm:p-4 rounded-2xl bg-indigo-50/80 border border-indigo-200">
+            <div class="flex items-center gap-1.5 mb-1.5">
+              <span class="text-indigo-500 text-sm">💡</span>
+              <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wide">A mistake or area to improve together:</h4>
+            </div>
+            <textarea id="feedbackImproveInput" rows="2" placeholder="Gently note any misstep, habit to fix, or stressful moment..." class="w-full text-xs bg-white border border-indigo-200 rounded-xl p-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-300"></textarea>
+          </div>
+
+          <!-- Day Vibe Selector -->
+          <div class="flex flex-col xs:flex-row xs:items-center justify-between gap-2 pt-1">
+            <span class="text-xs font-bold text-slate-700">Today's Couple Vibe:</span>
+            <div class="flex items-center gap-1.5" id="vibeSelector">
+              <button type="button" onclick="selectVibe('🥳 Radiant')" class="touch-target vibe-btn text-base p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition" title="Radiant">🥳</button>
+              <button type="button" onclick="selectVibe('💪 Productive')" class="touch-target vibe-btn text-base p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition" title="Productive">💪</button>
+              <button type="button" onclick="selectVibe('🌱 Balanced')" class="touch-target vibe-btn text-base p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition" title="Balanced">🌱</button>
+              <button type="button" onclick="selectVibe('😴 Tired but Tried')" class="touch-target vibe-btn text-base p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition" title="Tired">😴</button>
+            </div>
+          </div>
+
+          <button onclick="saveDailyFeedback()" class="touch-target w-full py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-extrabold shadow-sm transition flex items-center justify-center gap-2">
+            <span>💾 Save Reflection for Today</span>
+          </button>
+        </div>
+
+        <!-- Couple Pact -->
+        <div class="mt-4 p-3.5 rounded-2xl bg-gradient-to-r from-pink-50 to-indigo-50 border border-pink-100 flex items-center gap-3">
+          <span class="text-2xl flex-shrink-0">🤝</span>
+          <p class="text-[11px] sm:text-xs text-slate-600 leading-snug">
+            <strong>Couple Pact:</strong> "Never let differences turn into distance. We evaluate daily habits to lift each other up, not to blame."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 4: GRAPHICAL ANALYTICS & CHARTS ================= -->
+    <section id="tab-analytics" class="tab-content hidden space-y-4">
+      <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-6">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+          <div>
+            <h3 class="text-base sm:text-lg font-black text-slate-800 flex items-center gap-2">
+              <span>📈 7-Day Trend &amp; Category Breakdown</span>
+            </h3>
+            <p class="text-[11px] sm:text-xs text-slate-500">Visual proof of your daily dedication</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center gap-1 text-[11px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md">
+              <span class="w-2 h-2 rounded-full bg-blue-500 inline-block"></span> Dumbo
+            </span>
+            <span class="inline-flex items-center gap-1 text-[11px] font-bold text-pink-700 bg-pink-50 px-2 py-0.5 rounded-md">
+              <span class="w-2 h-2 rounded-full bg-pink-500 inline-block"></span> Butku
+            </span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+          
+          <!-- 7-Day Completion Line Chart -->
+          <div class="lg:col-span-8 bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-100 shadow-xs">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wide">Fulfillment Trend (%)</h4>
+              <span class="text-[10px] text-slate-400">Past 7 Days</span>
+            </div>
+            <!-- Fixed Height Responsive Chart Container -->
+            <div class="relative h-60 sm:h-72 w-full">
+              <canvas id="trendChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Category Doughnut Chart -->
+          <div class="lg:col-span-4 bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-100 shadow-xs flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wide">Category Balance</h4>
+              <span class="text-[10px] text-slate-400">Completed</span>
+            </div>
+            <div class="relative h-56 sm:h-60 w-full flex items-center justify-center">
+              <canvas id="categoryChart"></canvas>
+            </div>
+            <p id="categoryEmptyLabel" class="text-[10px] text-slate-400 text-center mt-2">Health, Work, Personal, Habits &amp; Couple</p>
+          </div>
+        </div>
+
+        <!-- All-Time Finished Tasks Pill Summary -->
+        <div class="grid grid-cols-2 gap-2 text-center pt-2">
+          <div class="p-2.5 rounded-xl bg-blue-50/80 border border-blue-100">
+            <span class="text-base">🐘</span>
+            <div id="statDumboTasks" class="text-sm sm:text-base font-black text-blue-700">0 done</div>
+            <span class="text-[9px] sm:text-[10px] text-slate-500 font-semibold">Dumbo (Rakesh)</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-pink-50/80 border border-pink-100">
+            <span class="text-base">🐧</span>
+            <div id="statButkuTasks" class="text-sm sm:text-base font-black text-pink-700">0 done</div>
+            <span class="text-[9px] sm:text-[10px] text-slate-500 font-semibold">Butku (Diya)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 5: PAST DATA HISTORY LOG ================= -->
+    <section id="tab-history" class="tab-content hidden space-y-4">
+      <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-4">
+        
+        <div class="flex items-center justify-between gap-3 border-b border-slate-100 pb-3">
+          <div>
+            <h3 class="text-base sm:text-lg font-black text-slate-800 flex items-center gap-1.5">
+              <span>📅 History &amp; Growth Archive</span>
+            </h3>
+            <p class="text-[11px] sm:text-xs text-slate-500">Past dates, completed rates, rewards, and feedback logs</p>
+          </div>
+          <button onclick="renderHistoryLog()" class="touch-target px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold text-slate-700 transition">
+            Refresh
+          </button>
+        </div>
+
+        <!-- Responsive Table Container -->
+        <div class="overflow-x-auto no-scrollbar -mx-2 sm:mx-0">
+          <div class="inline-block min-w-full align-middle">
+            <table class="min-w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 text-slate-400 uppercase text-[10px] tracking-wider">
+                  <th class="py-2.5 px-3">Date</th>
+                  <th class="py-2.5 px-2">Dumbo 🐘</th>
+                  <th class="py-2.5 px-2">Butku 🐧</th>
+                  <th class="py-2.5 px-3">Gifts Earned</th>
+                  <th class="py-2.5 px-3">Reflection Status</th>
+                  <th class="py-2.5 px-3 text-right">View</th>
+                </tr>
+              </thead>
+              <tbody id="historyTableBody" class="divide-y divide-slate-100 text-slate-700 font-medium">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= MOBILE FIXED BOTTOM NAVIGATION BAR ================= -->
+  <!-- Designed with 44px+ touch targets and bottom safe area support -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-t border-slate-200/80 px-2 pt-1.5 pb-[calc(0.4rem+var(--sab))] shadow-lg">
+    <div class="max-w-md mx-auto grid grid-cols-5 gap-1 text-center">
+      
+      <button onclick="switchTab('tasks')" class="mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-pink-600 font-extrabold transition" data-tab="tasks">
+        <span class="text-lg leading-none">🎯</span>
+        <span class="text-[10px] font-bold mt-0.5">Tasks</span>
+      </button>
+
+      <button onclick="switchTab('gifts')" class="mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-slate-400 font-medium transition" data-tab="gifts">
+        <span class="text-lg leading-none">🎁</span>
+        <span class="text-[10px] mt-0.5">Gifts</span>
+      </button>
+
+      <button onclick="switchTab('growth')" class="mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-slate-400 font-medium transition" data-tab="growth">
+        <span class="text-lg leading-none">🌱</span>
+        <span class="text-[10px] mt-0.5">Reflection</span>
+      </button>
+
+      <button onclick="switchTab('analytics')" class="mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-slate-400 font-medium transition" data-tab="analytics">
+        <span class="text-lg leading-none">📈</span>
+        <span class="text-[10px] mt-0.5">Charts</span>
+      </button>
+
+      <button onclick="switchTab('history')" class="mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-slate-400 font-medium transition" data-tab="history">
+        <span class="text-lg leading-none">📅</span>
+        <span class="text-[10px] mt-0.5">History</span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- ================= MODAL: END-OF-DAY PARTNER LOVE NOTE ================= -->
+  <div id="endDayModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-3.5">
+    <div class="glass-card max-w-md w-full rounded-3xl p-5 sm:p-6 shadow-2xl border border-white space-y-3.5">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">💌</span>
+          <h3 class="text-base sm:text-lg font-black text-slate-800">Leave Partner Love Note</h3>
+        </div>
+        <button onclick="closeEndDayModal()" class="touch-target text-slate-400 hover:text-slate-600 text-xl font-bold flex items-center justify-center">✕</button>
+      </div>
+
+      <p class="text-xs text-slate-600 leading-relaxed">
+        Write a supportive or romantic morning greeting. When your partner opens the site tomorrow, it will shine on their top banner!
+      </p>
+
+      <div class="space-y-2.5">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1" id="modalFromToLabel">From Dumbo to Butku:</label>
+          <textarea id="modalPartnerMessage" rows="3" placeholder="Good morning sweetheart! You are incredible, let's crush our goals today! 💖" class="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Select an Inspiring Sticker:</label>
+          <div class="flex items-center gap-2 text-xl" id="modalStickerRow">
+            <button type="button" onclick="selectModalSticker('💖 Sweet Love')" class="touch-target modal-stk p-2 rounded-xl bg-pink-100 border border-pink-300">💖</button>
+            <button type="button" onclick="selectModalSticker('🌟 Proud of You')" class="touch-target modal-stk p-2 rounded-xl bg-white border border-slate-200">🌟</button>
+            <button type="button" onclick="selectModalSticker('☕ Morning Fuel')" class="touch-target modal-stk p-2 rounded-xl bg-white border border-slate-200">☕</button>
+            <button type="button" onclick="selectModalSticker('🔥 Keep Crushing It')" class="touch-target modal-stk p-2 rounded-xl bg-white border border-slate-200">🔥</button>
+            <button type="button" onclick="selectModalSticker('🫂 Hugs Always')" class="touch-target modal-stk p-2 rounded-xl bg-white border border-slate-200">🫂</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+        <button onclick="closeEndDayModal()" class="touch-target px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-100">Cancel</button>
+        <button onclick="saveNightMessage()" class="touch-target px-5 py-2 rounded-xl bg-gradient-to-r from-pink-500 to-indigo-600 text-white text-xs font-extrabold shadow-sm hover:opacity-95">Send to Banner 🚀</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CELEBRATION MODAL (GIFT UNLOCKED) ================= -->
+  <div id="celebrationModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-3.5">
+    <div class="glass-card max-w-sm w-full rounded-3xl p-6 text-center shadow-2xl border-2 border-pink-300 space-y-3.5">
+      <div class="text-5xl animate-bounce">🎉</div>
+      <h3 class="text-xl font-black bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+        Fulfillment Milestone!
+      </h3>
+      <p id="celebrationSubtext" class="text-xs text-slate-600">
+        You achieved outstanding completion today. A special couple gift coupon is officially unlocked!
+      </p>
+
+      <div id="celebrationGiftCard" class="p-3.5 rounded-2xl bg-gradient-to-br from-pink-50 to-purple-50 border border-pink-200 text-left my-2 shadow-xs">
+        <!-- Injected via script -->
+      </div>
+
+      <button onclick="closeCelebrationModal()" class="touch-target w-full py-2.5 rounded-xl bg-gradient-to-r from-pink-500 to-indigo-600 text-white font-extrabold text-xs sm:text-sm shadow-md">
+        Yay! Redeem with Partner 💖
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= RESET CONFIRMATION MODAL ================= -->
+  <div id="resetConfirmModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="glass-card max-w-xs w-full rounded-3xl p-5 text-center space-y-3 border border-rose-200">
+      <div class="text-3xl">⚠️</div>
+      <h4 class="text-base font-bold text-slate-800">Reset to Clean Zero?</h4>
+      <p class="text-xs text-slate-500 leading-relaxed">
+        This wipes tasks, reflections, notes, and chart metrics back to zero so you can start fresh.
+      </p>
+      <div class="flex items-center justify-center gap-2 pt-2">
+        <button onclick="closeResetModal()" class="touch-target px-3 py-1.5 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-100">Cancel</button>
+        <button onclick="executeResetAllData()" class="touch-target px-4 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs">Yes, Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    /* -------------------------------------------------------------
+       1. DATA STRUCTURE & CLEAN ZERO LOCALSTORAGE INITIALIZATION
+       ------------------------------------------------------------- */
+    const STORAGE_KEY = 'grow_together_dumbo_butku_v3_mobile';
+
+    const formatDateKey = (date) => {
+      const d = new Date(date);
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    };
+
+    const getTodayKey = () => formatDateKey(new Date());
+
+    let currentUser = 'dumbo'; // 'dumbo' or 'butku'
+    let selectedDateKey = getTodayKey();
+    let currentActiveTab = 'tasks';
+    let currentCategoryFilter = 'all';
+    let currentVibe = '🌱 Balanced';
+    let currentModalSticker = '💖 Sweet Love';
+
+    let trendChartInstance = null;
+    let categoryChartInstance = null;
+
+    // Couple Rewards Catalog
+    const REWARD_TIERS = {
+      tier80: [
+        { id: 'massage', title: '💆 20-min Warm Head & Shoulder Massage', desc: 'No excuses from partner—total relaxation guaranteed!', icon: '💆' },
+        { id: 'cheat_treat', title: '🧁 Favorite Dessert / Cheat Treat', desc: 'Partner orders or prepares your ultimate sweet craving.', icon: '🍰' },
+        { id: 'sunset_walk', title: '🌇 Sunset Walk & Phone-Free Talk', desc: 'Holding hands and talking about future dreams uninterrupted.', icon: '🌅' },
+        { id: 'movie_pick', title: '🎬 Uncontested Movie Choice Night', desc: 'You get full rights to pick movie & snack tonight.', icon: '🍿' }
+      ],
+      tier100: [
+        { id: 'custom_wish', title: '⭐ 1 Sovereign Golden Wish Granted!', desc: 'Partner must fulfill any sweet request without grumbling!', icon: '🌟' },
+        { id: 'breakfast_bed', title: '🥞 Royal Breakfast Served in Bed', desc: 'Warm tea/coffee & your favorite hot breakfast served lovingly.', icon: '☕' },
+        { id: 'romantic_dinner', title: '🕯️ Candlelit Home Cooked Dinner', desc: 'A special meal cooked and served with couple playlist vibes.', icon: '🍝' }
+      ]
+    };
+
+    function generateCleanZeroState() {
+      const today = getTodayKey();
+      const history = {};
+      history[today] = {
+        dumbo: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🌱 Balanced' } },
+        butku: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🌱 Balanced' } },
+        rewardsUnlocked: { dumbo: null, butku: null }
+      };
+
+      return {
+        activeUser: 'dumbo',
+        messages: {
+          toDumbo: null,
+          toButku: null
+        },
+        history: history
+      };
+    }
+
+    function loadState() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) {
+        const fresh = generateCleanZeroState();
+        saveState(fresh);
+        return fresh;
+      }
+      try {
+        const parsed = JSON.parse(raw);
+        const today = getTodayKey();
+        if (!parsed.history) parsed.history = {};
+        if (!parsed.history[today]) {
+          parsed.history[today] = {
+            dumbo: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🌱 Balanced' } },
+            butku: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🌱 Balanced' } },
+            rewardsUnlocked: { dumbo: null, butku: null }
+          };
+        }
+        return parsed;
+      } catch (e) {
+        const fresh = generateCleanZeroState();
+        saveState(fresh);
+        return fresh;
+      }
+    }
+
+    function saveState(state) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    let appState = loadState();
+
+    /* -------------------------------------------------------------
+       2. TAB NAVIGATION (SYNCED MOBILE BOTTOM BAR & DESKTOP HEADER)
+       ------------------------------------------------------------- */
+    function switchTab(tabId) {
+      currentActiveTab = tabId;
+
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(el => {
+        el.classList.add('hidden');
+      });
+
+      // Show targeted tab
+      const target = document.getElementById(`tab-${tabId}`);
+      if (target) {
+        target.classList.remove('hidden');
+      }
+
+      // Update Mobile Nav
+      document.querySelectorAll('.mob-nav-btn').forEach(btn => {
+        const isSelected = btn.getAttribute('data-tab') === tabId;
+        if (isSelected) {
+          btn.className = 'mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-pink-600 font-extrabold transition';
+        } else {
+          btn.className = 'mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-slate-400 font-medium transition';
+        }
+      });
+
+      // Update Desktop Nav
+      document.querySelectorAll('.desk-tab-btn').forEach(btn => {
+        const isSelected = btn.getAttribute('data-tab') === tabId;
+        if (isSelected) {
+          btn.className = 'desk-tab-btn px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 bg-slate-900 text-white shadow-xs';
+        } else {
+          btn.className = 'desk-tab-btn px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 bg-white text-slate-600 hover:bg-slate-100';
+        }
+      });
+
+      // Refresh charts if opening analytics tab
+      if (tabId === 'analytics') {
+        setTimeout(renderCharts, 50);
+      } else if (tabId === 'history') {
+        renderHistoryLog();
+      }
+    }
+
+    /* -------------------------------------------------------------
+       3. USER SWITCHING
+       ------------------------------------------------------------- */
+    function switchUser(user) {
+      currentUser = user;
+      appState.activeUser = user;
+      saveState(appState);
+
+      const btnDumbo = document.getElementById('btnSwitchDumbo');
+      const btnButku = document.getElementById('btnSwitchButku');
+
+      if (user === 'dumbo') {
+        btnDumbo.className = 'touch-target flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-blue-600 shadow-xs border border-blue-200 transition-all';
+        btnButku.className = 'touch-target flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-800 transition-all';
+
+        document.getElementById('currentUserAvatar').innerText = '🐘';
+        document.getElementById('currentUserNameDisplay').innerHTML = 'Dumbo <span class="text-blue-500 font-semibold">(Rakeshkumar)</span>';
+        document.getElementById('currentUserRoleTag').className = 'text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-blue-100 text-blue-700';
+        document.getElementById('feedbackTargetSub').innerText = 'Constructive Reflection for Dumbo (from Butku)';
+        document.getElementById('feedbackShineLabel').innerText = 'Where Dumbo shined today:';
+      } else {
+        btnButku.className = 'touch-target flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-pink-600 shadow-xs border border-pink-200 transition-all';
+        btnDumbo.className = 'touch-target flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-800 transition-all';
+
+        document.getElementById('currentUserAvatar').innerText = '🐧';
+        document.getElementById('currentUserNameDisplay').innerHTML = 'Butku <span class="text-pink-500 font-semibold">(Diya)</span>';
+        document.getElementById('currentUserRoleTag').className = 'text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-pink-100 text-pink-700';
+        document.getElementById('feedbackTargetSub').innerText = 'Constructive Reflection for Butku (from Dumbo)';
+        document.getElementById('feedbackShineLabel').innerText = 'Where Butku shined today:';
+      }
+
+      renderNotificationBanner();
+      renderTasks();
+      renderFeedbackInputs();
+      renderGifts();
+      updateMetricBadges();
+      renderCharts();
+      renderHistoryLog();
+    }
+
+    /* -------------------------------------------------------------
+       4. NOTIFICATION LOVE BANNER
+       ------------------------------------------------------------- */
+    function renderNotificationBanner() {
+      const banner = document.getElementById('partnerBanner');
+      const msgData = currentUser === 'dumbo' ? appState.messages?.toDumbo : appState.messages?.toButku;
+
+      if (!msgData || !msgData.text) {
+        banner.className = 'sticky top-0 z-40 transition-all duration-300 shadow-xs bg-pink-50/90 text-slate-600 border-b border-pink-100';
+        banner.innerHTML = `
+          <div class="max-w-6xl mx-auto px-3.5 py-2 text-center text-xs flex items-center justify-center gap-2">
+            <span>💌 No note left yet for today. Leave a sweet message for your partner!</span>
+            <button onclick="openEndDayModal()" class="text-pink-600 font-bold underline hover:text-pink-700">Write Note</button>
+          </div>
+        `;
+        return;
+      }
+
+      const isDumbo = currentUser === 'dumbo';
+      const bgColor = isDumbo 
+        ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white' 
+        : 'bg-gradient-to-r from-pink-600 via-rose-500 to-amber-500 text-white';
+
+      banner.className = `sticky top-0 z-40 transition-all duration-300 shadow-md ${bgColor}`;
+      banner.innerHTML = `
+        <div class="max-w-6xl mx-auto px-3.5 py-2 flex items-center justify-between gap-2 text-xs sm:text-sm">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="text-base flex-shrink-0">💌</span>
+            <div class="truncate">
+              <span class="font-extrabold uppercase text-[10px] tracking-wide opacity-90">${escapeHTML(msgData.from)}:</span>
+              <span class="font-medium ml-1">${escapeHTML(msgData.text)}</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <span class="hidden xs:inline-block px-2 py-0.5 rounded-full bg-white/20 text-[10px] font-semibold">${escapeHTML(msgData.sticker)}</span>
+            <button onclick="openEndDayModal()" class="touch-target px-2.5 py-1 rounded-lg bg-white/20 hover:bg-white/30 text-xs font-bold transition">
+              Reply
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    /* -------------------------------------------------------------
+       5. DATE LOGIC & HELPERS
+       ------------------------------------------------------------- */
+    function ensureDayStructure(dateKey) {
+      if (!appState.history[dateKey]) {
+        appState.history[dateKey] = {
+          dumbo: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🌱 Balanced' } },
+          butku: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🌱 Balanced' } },
+          rewardsUnlocked: { dumbo: null, butku: null }
+        };
+        saveState(appState);
+      }
+    }
+
+    function onDateChanged(val) {
+      if (!val) return;
+      selectedDateKey = val;
+      ensureDayStructure(selectedDateKey);
+
+      const isToday = selectedDateKey === getTodayKey();
+      document.getElementById('currentDateDisplay').innerText = isToday ? 'Today (' + selectedDateKey + ')' : selectedDateKey;
+
+      renderTasks();
+      renderFeedbackInputs();
+      renderGifts();
+      updateMetricBadges();
+      renderHistoryLog();
+    }
+
+    function shiftDate(offset) {
+      const current = new Date(selectedDateKey);
+      current.setDate(current.getDate() + offset);
+      const newKey = formatDateKey(current);
+      document.getElementById('dateSelectPicker').value = newKey;
+      onDateChanged(newKey);
+    }
+
+    function jumpToToday() {
+      const today = getTodayKey();
+      document.getElementById('dateSelectPicker').value = today;
+      onDateChanged(today);
+    }
+
+    function getDayTasks() {
+      ensureDayStructure(selectedDateKey);
+      return appState.history[selectedDateKey][currentUser]?.tasks || [];
+    }
+
+    /* -------------------------------------------------------------
+       6. TASK LIST RENDERING (MIN 44PX TOUCH TARGETS)
+       ------------------------------------------------------------- */
+    function renderTasks() {
+      const tasks = getDayTasks();
+      const container = document.getElementById('taskListContainer');
+      container.innerHTML = '';
+
+      const filtered = currentCategoryFilter === 'all'
+        ? tasks
+        : tasks.filter(t => t.category === currentCategoryFilter);
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-8 px-4 rounded-2xl border border-dashed border-slate-200 bg-white/50">
+            <div class="text-2xl mb-1.5">🌱</div>
+            <p class="text-xs font-bold text-slate-600">No tasks here yet!</p>
+            <p class="text-[11px] text-slate-400 mt-0.5">Type a task above and press "+ Add" to begin your streak.</p>
+          </div>
+        `;
+      } else {
+        filtered.forEach(task => {
+          const item = document.createElement('div');
+          item.className = `touch-target flex items-center justify-between p-3 rounded-2xl border transition-all ${
+            task.done 
+              ? 'bg-emerald-50/70 border-emerald-200 shadow-none' 
+              : 'bg-white border-slate-200/80 shadow-xs'
+          }`;
+
+          const catColor = getCategoryColor(task.category);
+
+          item.innerHTML = `
+            <label class="flex items-center gap-3 flex-1 min-w-0 cursor-pointer select-none">
+              <input type="checkbox" ${task.done ? 'checked' : ''} onchange="toggleTask('${task.id}')" class="touch-target w-5 h-5 rounded-lg text-pink-600 border-slate-300 focus:ring-pink-400 cursor-pointer" />
+              <div class="truncate">
+                <span class="text-xs sm:text-sm font-semibold ${task.done ? 'line-through text-slate-400' : 'text-slate-800'}">
+                  ${escapeHTML(task.title)}
+                </span>
+                <span class="block text-[10px] font-bold ${catColor}">
+                  ${task.category}
+                </span>
+              </div>
+            </label>
+            <button onclick="deleteTask('${task.id}')" class="touch-target w-10 h-10 flex items-center justify-center text-slate-300 hover:text-rose-500 rounded-xl transition text-sm font-bold" title="Delete Task">
+              ✕
+            </button>
+          `;
+          container.appendChild(item);
+        });
+      }
+
+      updateDailyProgress();
+    }
+
+    function getCategoryColor(cat) {
+      switch(cat) {
+        case 'Health': return 'text-emerald-600';
+        case 'Work': return 'text-blue-600';
+        case 'Personal': return 'text-purple-600';
+        case 'Habits': return 'text-amber-600';
+        case 'Relationship': return 'text-pink-600';
+        default: return 'text-slate-500';
+      }
+    }
+
+    function filterTasks(cat) {
+      currentCategoryFilter = cat;
+      document.querySelectorAll('.cat-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-cat') === cat) {
+          btn.className = 'cat-filter-btn touch-target px-3.5 py-1.5 rounded-xl font-bold bg-slate-900 text-white flex-shrink-0';
+        } else {
+          btn.className = 'cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50';
+        }
+      });
+      renderTasks();
+    }
+
+    function handleAddTask(e) {
+      e.preventDefault();
+      const input = document.getElementById('newTaskInput');
+      const catSelect = document.getElementById('newTaskCategory');
+      const title = input.value.trim();
+      if (!title) return;
+
+      ensureDayStructure(selectedDateKey);
+      const newTask = {
+        id: 't_' + Date.now(),
+        title: title,
+        category: catSelect.value,
+        done: false
+      };
+
+      appState.history[selectedDateKey][currentUser].tasks.push(newTask);
+      saveState(appState);
+
+      input.value = '';
+      renderTasks();
+      updateMetricBadges();
+      renderCharts();
+      showToast('Task added! Keep growing 🎯');
+    }
+
+    function toggleTask(id) {
+      ensureDayStructure(selectedDateKey);
+      const tasks = appState.history[selectedDateKey][currentUser].tasks;
+      const target = tasks.find(t => t.id === id);
+      if (target) {
+        target.done = !target.done;
+        saveState(appState);
+        renderTasks();
+        updateMetricBadges();
+        renderCharts();
+
+        if (target.done) {
+          checkAndTriggerCelebration(false);
+        }
+      }
+    }
+
+    function deleteTask(id) {
+      ensureDayStructure(selectedDateKey);
+      const tasks = appState.history[selectedDateKey][currentUser].tasks;
+      appState.history[selectedDateKey][currentUser].tasks = tasks.filter(t => t.id !== id);
+      saveState(appState);
+      renderTasks();
+      updateMetricBadges();
+      renderCharts();
+      showToast('Task removed.');
+    }
+
+    function updateDailyProgress() {
+      const tasks = getDayTasks();
+      const total = tasks.length;
+      const completed = tasks.filter(t => t.done).length;
+      const pct = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+      document.getElementById('taskProgressPercentage').innerText = `${pct}%`;
+      document.getElementById('taskFractionCompleted').innerText = `${completed}/${total} done`;
+      document.getElementById('taskProgressBar').style.width = `${pct}%`;
+
+      const giftTag = document.getElementById('giftStatusTag');
+      const giftTitle = document.getElementById('giftStatusTitle');
+      const giftSub = document.getElementById('giftStatusSub');
+
+      if (total === 0) {
+        giftTag.innerText = '0 Tasks';
+        giftTag.className = 'text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600';
+        giftTitle.innerText = 'Add tasks to start';
+        giftSub.innerText = '80% unlocks coupon';
+      } else if (pct >= 100) {
+        giftTag.innerText = '100% ⭐';
+        giftTag.className = 'text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-800 animate-pulse';
+        giftTitle.innerText = 'Jackpot Unlocked!';
+        giftSub.innerText = '1 Golden Custom Wish!';
+      } else if (pct >= 80) {
+        giftTag.innerText = 'Unlocked! 🎁';
+        giftTag.className = 'text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800';
+        giftTitle.innerText = 'Couple Coupon Won!';
+        giftSub.innerText = 'Ready to redeem!';
+      } else {
+        giftTag.innerText = `${pct}%`;
+        giftTag.className = 'text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600';
+        giftTitle.innerText = 'In Progress ⏳';
+        giftSub.innerText = `Need ${Math.max(0, 80 - pct)}% more`;
+      }
+    }
+
+    /* -------------------------------------------------------------
+       7. CONFETTI & GIFT UNLOCKING
+       ------------------------------------------------------------- */
+    function checkAndTriggerCelebration(forceAlert) {
+      const tasks = getDayTasks();
+      const total = tasks.length;
+      if (total === 0) {
+        if (forceAlert) showToast('Add and complete tasks to unlock rewards!');
+        return;
+      }
+      const completed = tasks.filter(t => t.done).length;
+      const pct = Math.round((completed / total) * 100);
+
+      if (pct >= 80) {
+        confetti({
+          particleCount: 75,
+          spread: 60,
+          origin: { y: 0.65 }
+        });
+
+        let rewardName = '';
+        if (pct >= 100) {
+          const r = REWARD_TIERS.tier100[Math.floor(Math.random() * REWARD_TIERS.tier100.length)];
+          rewardName = r.title;
+        } else {
+          const r = REWARD_TIERS.tier80[Math.floor(Math.random() * REWARD_TIERS.tier80.length)];
+          rewardName = r.title;
+        }
+
+        if (!appState.history[selectedDateKey].rewardsUnlocked) {
+          appState.history[selectedDateKey].rewardsUnlocked = {};
+        }
+        if (!appState.history[selectedDateKey].rewardsUnlocked[currentUser]) {
+          appState.history[selectedDateKey].rewardsUnlocked[currentUser] = rewardName;
+          saveState(appState);
+        }
+
+        if (forceAlert) {
+          showCelebrationModal(pct, rewardName);
+        }
+        renderGifts();
+      } else if (forceAlert) {
+        showToast(`You're at ${pct}%. Reach 80% to claim today's couple reward! 💪💖`);
+      }
+    }
+
+    function showCelebrationModal(pct, rewardName) {
+      const modal = document.getElementById('celebrationModal');
+      const card = document.getElementById('celebrationGiftCard');
+      const sub = document.getElementById('celebrationSubtext');
+
+      sub.innerText = `Outstanding! You achieved ${pct}% fulfillment today. Here is your earned privilege:`;
+      card.innerHTML = `
+        <div class="flex items-center gap-3">
+          <span class="text-3xl">🎟️</span>
+          <div>
+            <div class="text-[10px] uppercase font-bold text-pink-600">Official Couple Coupon</div>
+            <div class="text-xs sm:text-sm font-bold text-slate-800">${escapeHTML(rewardName)}</div>
+            <p class="text-[10px] text-slate-500 mt-0.5">Earned by ${currentUser === 'dumbo' ? 'Dumbo (Rakesh)' : 'Butku (Diya)'}</p>
+          </div>
+        </div>
+      `;
+      modal.classList.remove('hidden');
+    }
+
+    function closeCelebrationModal() {
+      document.getElementById('celebrationModal').classList.add('hidden');
+    }
+
+    function renderGifts() {
+      const container = document.getElementById('giftCouponsGrid');
+      container.innerHTML = '';
+
+      const currentDayReward = appState.history[selectedDateKey]?.rewardsUnlocked?.[currentUser];
+
+      const cards = [
+        {
+          title: currentDayReward || '🔒 Reach 80% to Unlock Today\'s Coupon',
+          status: currentDayReward ? 'Unlocked for Today' : 'Locked',
+          icon: currentDayReward ? '🎁' : '🔒',
+          active: !!currentDayReward
+        },
+        {
+          title: '💆 20-Min Warm Shoulder & Head Massage',
+          status: 'Permanent Couple Privilege',
+          icon: '💆',
+          active: !!currentDayReward
+        },
+        {
+          title: '☕ Hot Brewed Chai & Favorite Breakfast',
+          status: 'Special Morning Privilege',
+          icon: '☕',
+          active: !!currentDayReward
+        },
+        {
+          title: '⭐ 1 Sovereign Custom Wish Granted by Partner',
+          status: '100% Daily Perfection',
+          icon: '🌟',
+          active: currentDayReward && currentDayReward.includes('Wish')
+        }
+      ];
+
+      cards.forEach(c => {
+        const div = document.createElement('div');
+        div.className = `p-3.5 rounded-2xl border transition-all flex items-start gap-3 ${
+          c.active 
+            ? 'bg-gradient-to-br from-pink-50 to-purple-50 border-pink-200 shadow-xs' 
+            : 'bg-slate-50/70 border-slate-200 opacity-60'
+        }`;
+        div.innerHTML = `
+          <div class="text-2xl p-2 rounded-xl bg-white shadow-xs">${c.icon}</div>
+          <div class="min-w-0">
+            <div class="text-[9px] uppercase font-bold tracking-wider ${c.active ? 'text-pink-600' : 'text-slate-400'}">${c.status}</div>
+            <h5 class="text-xs sm:text-sm font-bold text-slate-800 leading-snug mt-0.5 truncate">${escapeHTML(c.title)}</h5>
+            <p class="text-[10px] text-slate-500 mt-0.5">Valid for Dumbo &amp; Butku</p>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    /* -------------------------------------------------------------
+       8. MUTUAL REFLECTION & MISTAKE LEARNING
+       ------------------------------------------------------------- */
+    function renderFeedbackInputs() {
+      ensureDayStructure(selectedDateKey);
+      const partnerKey = currentUser === 'dumbo' ? 'butku' : 'dumbo';
+      const feedback = appState.history[selectedDateKey][partnerKey]?.feedbackGivenToPartner || { shine: '', mistake: '', vibe: '🌱 Balanced' };
+
+      document.getElementById('feedbackShineInput').value = feedback.shine || '';
+      document.getElementById('feedbackImproveInput').value = feedback.mistake || '';
+      selectVibe(feedback.vibe || '🌱 Balanced');
+    }
+
+    function selectVibe(vibeText) {
+      currentVibe = vibeText;
+      document.querySelectorAll('.vibe-btn').forEach(btn => {
+        if (btn.getAttribute('title') && vibeText.includes(btn.getAttribute('title').split(' ')[0])) {
+          btn.classList.add('bg-pink-100', 'border-pink-300');
+        } else {
+          btn.classList.remove('bg-pink-100', 'border-pink-300');
+        }
+      });
+    }
+
+    function saveDailyFeedback() {
+      ensureDayStructure(selectedDateKey);
+      const partnerKey = currentUser === 'dumbo' ? 'butku' : 'dumbo';
+
+      const shine = document.getElementById('feedbackShineInput').value.trim();
+      const mistake = document.getElementById('feedbackImproveInput').value.trim();
+
+      appState.history[selectedDateKey][partnerKey].feedbackGivenToPartner = {
+        shine: shine,
+        mistake: mistake,
+        vibe: currentVibe
+      };
+
+      saveState(appState);
+      renderHistoryLog();
+      showToast('💖 Reflection saved! Helping each other grow without fear.');
+    }
+
+    /* -------------------------------------------------------------
+       9. PARTNER LOVE NOTE MODAL
+       ------------------------------------------------------------- */
+    function openEndDayModal() {
+      const isDumbo = currentUser === 'dumbo';
+      const toName = isDumbo ? 'Butku (Diya)' : 'Dumbo (Rakesh)';
+      const fromName = isDumbo ? 'Dumbo (Rakesh)' : 'Butku (Diya)';
+      document.getElementById('modalFromToLabel').innerText = `From ${fromName} to ${toName}:`;
+      document.getElementById('modalPartnerMessage').value = '';
+      document.getElementById('endDayModal').classList.remove('hidden');
+    }
+
+    function closeEndDayModal() {
+      document.getElementById('endDayModal').classList.add('hidden');
+    }
+
+    function selectModalSticker(stk) {
+      currentModalSticker = stk;
+      document.querySelectorAll('.modal-stk').forEach(b => {
+        if (b.innerText.includes(stk.split(' ')[0])) {
+          b.className = 'touch-target modal-stk p-2 rounded-xl bg-pink-100 border border-pink-300';
+        } else {
+          b.className = 'touch-target modal-stk p-2 rounded-xl bg-white border border-slate-200';
+        }
+      });
+    }
+
+    function saveNightMessage() {
+      const msg = document.getElementById('modalPartnerMessage').value.trim();
+      if (!msg) {
+        showToast('Please enter a kind message!');
+        return;
+      }
+
+      const isDumbo = currentUser === 'dumbo';
+      const targetBox = isDumbo ? 'toButku' : 'toDumbo';
+      const fromName = isDumbo ? 'Dumbo (Rakesh)' : 'Butku (Diya)';
+
+      if (!appState.messages) appState.messages = {};
+      appState.messages[targetBox] = {
+        from: fromName,
+        text: msg,
+        sticker: currentModalSticker,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+
+      saveState(appState);
+      closeEndDayModal();
+      renderNotificationBanner();
+      showToast(`💌 Delivered! ${isDumbo ? 'Butku' : 'Dumbo'} will see this message!`);
+    }
+
+    /* -------------------------------------------------------------
+       10. GROWTH METRICS & STREAK CALCULATIONS
+       ------------------------------------------------------------- */
+    function calculateDayPct(dateStr, user) {
+      const dayData = appState.history[dateStr]?.[user];
+      if (!dayData || !dayData.tasks || dayData.tasks.length === 0) return 0;
+      const done = dayData.tasks.filter(t => t.done).length;
+      return Math.round((done / dayData.tasks.length) * 100);
+    }
+
+    function updateMetricBadges() {
+      const today = new Date(selectedDateKey);
+      const prevDate = new Date(today);
+      prevDate.setDate(today.getDate() - 1);
+      const prevDateStr = formatDateKey(prevDate);
+
+      const todayPct = calculateDayPct(selectedDateKey, currentUser);
+      const prevPct = calculateDayPct(prevDateStr, currentUser);
+      const diff = todayPct - prevPct;
+
+      const dodVal = document.getElementById('dodGrowthValue');
+      const dodBadge = document.getElementById('dodGrowthBadge');
+      const dodSub = document.getElementById('dodGrowthSub');
+
+      if (todayPct === 0 && prevPct === 0) {
+        dodVal.innerText = '0%';
+        dodBadge.innerText = '0%';
+        dodBadge.className = 'text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600';
+        dodSub.innerText = 'Fresh start today';
+      } else if (diff >= 0) {
+        dodVal.innerText = `+${diff}%`;
+        dodBadge.innerText = 'Growing 🚀';
+        dodBadge.className = 'text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700';
+        dodSub.innerText = `${todayPct}% vs ${prevPct}% yday`;
+      } else {
+        dodVal.innerText = `${diff}%`;
+        dodBadge.innerText = 'Recover 🌱';
+        dodBadge.className = 'text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-rose-100 text-rose-700';
+        dodSub.innerText = `${todayPct}% vs ${prevPct}% yday`;
+      }
+
+      // Weekly composite score
+      const dateKeys = Object.keys(appState.history).sort().slice(-7);
+      let dumboSum = 0;
+      let butkuSum = 0;
+      let dumboTotalDone = 0;
+      let butkuTotalDone = 0;
+
+      Object.keys(appState.history).forEach(k => {
+        const dTasks = appState.history[k]?.dumbo?.tasks || [];
+        const bTasks = appState.history[k]?.butku?.tasks || [];
+        dumboTotalDone += dTasks.filter(t => t.done).length;
+        butkuTotalDone += bTasks.filter(t => t.done).length;
+      });
+
+      dateKeys.forEach(k => {
+        dumboSum += calculateDayPct(k, 'dumbo');
+        butkuSum += calculateDayPct(k, 'butku');
+      });
+
+      const avgWeekly = dateKeys.length === 0 ? 0 : Math.round((dumboSum + butkuSum) / (dateKeys.length * 2));
+      document.getElementById('weeklyScoreValue').innerText = `${avgWeekly}/100`;
+      document.getElementById('weeklyScoreBar').style.width = `${avgWeekly}%`;
+
+      // Streak calculation (days with >= 50% fulfillment)
+      let streak = 0;
+      const sortedDates = Object.keys(appState.history).sort().reverse();
+      for (const d of sortedDates) {
+        const dPct = calculateDayPct(d, 'dumbo');
+        const bPct = calculateDayPct(d, 'butku');
+        if (dPct >= 50 || bPct >= 50) {
+          streak++;
+        } else if (d !== getTodayKey()) {
+          break;
+        }
+      }
+      document.getElementById('streakCountValue').innerText = `${streak} ${streak === 1 ? 'Day' : 'Days'}`;
+
+      document.getElementById('statDumboTasks').innerText = `${dumboTotalDone} done`;
+      document.getElementById('statButkuTasks').innerText = `${butkuTotalDone} done`;
+    }
+
+    /* -------------------------------------------------------------
+       11. RESPONSIVE CHART.JS RENDERING
+       ------------------------------------------------------------- */
+    function renderCharts() {
+      const dates = [];
+      const today = new Date();
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date();
+        d.setDate(today.getDate() - i);
+        dates.push(formatDateKey(d));
+      }
+
+      const labels = dates.map(d => {
+        const parts = d.split('-');
+        return `${parts[1]}/${parts[2]}`;
+      });
+
+      const dumboData = dates.map(d => calculateDayPct(d, 'dumbo'));
+      const butkuData = dates.map(d => calculateDayPct(d, 'butku'));
+
+      // Line Chart
+      const trendCanvas = document.getElementById('trendChart');
+      if (trendCanvas) {
+        const ctxTrend = trendCanvas.getContext('2d');
+        if (trendChartInstance) {
+          trendChartInstance.destroy();
+        }
+
+        trendChartInstance = new Chart(ctxTrend, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: 'Dumbo',
+                data: dumboData,
+                borderColor: '#3b82f6',
+                backgroundColor: 'rgba(59, 130, 246, 0.08)',
+                borderWidth: 2.5,
+                fill: true,
+                tension: 0.35,
+                pointBackgroundColor: '#2563eb',
+                pointRadius: 3
+              },
+              {
+                label: 'Butku',
+                data: butkuData,
+                borderColor: '#ec4899',
+                backgroundColor: 'rgba(236, 72, 153, 0.08)',
+                borderWidth: 2.5,
+                fill: true,
+                tension: 0.35,
+                pointBackgroundColor: '#db2777',
+                pointRadius: 3
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#0f172a',
+                padding: 8,
+                cornerRadius: 8
+              }
+            },
+            scales: {
+              y: {
+                min: 0,
+                max: 100,
+                ticks: {
+                  callback: val => val + '%',
+                  font: { size: 10 }
+                },
+                grid: { color: 'rgba(226, 232, 240, 0.6)' }
+              },
+              x: {
+                grid: { display: false },
+                ticks: { font: { size: 10 } }
+              }
+            }
+          }
+        });
+      }
+
+      // Doughnut Category Chart
+      const catCounts = {
+        'Health': 0,
+        'Work': 0,
+        'Personal': 0,
+        'Habits': 0,
+        'Relationship': 0
+      };
+
+      let totalDone = 0;
+      Object.keys(appState.history).forEach(d => {
+        ['dumbo', 'butku'].forEach(u => {
+          const tasks = appState.history[d]?.[u]?.tasks || [];
+          tasks.forEach(t => {
+            if (t.done && catCounts[t.category] !== undefined) {
+              catCounts[t.category]++;
+              totalDone++;
+            }
+          });
+        });
+      });
+
+      const catCanvas = document.getElementById('categoryChart');
+      if (catCanvas) {
+        const ctxCat = catCanvas.getContext('2d');
+        if (categoryChartInstance) {
+          categoryChartInstance.destroy();
+        }
+
+        const isEmpty = totalDone === 0;
+        const chartVals = isEmpty ? [1, 1, 1, 1, 1] : Object.values(catCounts);
+        const chartColors = isEmpty 
+          ? ['#f1f5f9', '#f1f5f9', '#f1f5f9', '#f1f5f9', '#f1f5f9'] 
+          : ['#10b981', '#3b82f6', '#a855f7', '#f59e0b', '#ec4899'];
+
+        categoryChartInstance = new Chart(ctxCat, {
+          type: 'doughnut',
+          data: {
+            labels: Object.keys(catCounts),
+            datasets: [{
+              data: chartVals,
+              backgroundColor: chartColors,
+              borderWidth: 2,
+              borderColor: '#ffffff'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  boxWidth: 8,
+                  font: { size: 9 },
+                  padding: 8
+                }
+              },
+              tooltip: {
+                enabled: !isEmpty
+              }
+            },
+            cutout: '68%'
+          }
+        });
+
+        const emptyLabel = document.getElementById('categoryEmptyLabel');
+        if (emptyLabel) {
+          emptyLabel.innerText = isEmpty 
+            ? '0 completed tasks. Tick off goals to build your wheel!' 
+            : `${totalDone} total tasks crushed across life domains`;
+        }
+      }
+    }
+
+    /* -------------------------------------------------------------
+       12. HISTORY LOG
+       ------------------------------------------------------------- */
+    function renderHistoryLog() {
+      const tbody = document.getElementById('historyTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const dates = Object.keys(appState.history).sort().reverse();
+      const hasContent = dates.some(d => {
+        const dTasks = appState.history[d]?.dumbo?.tasks || [];
+        const bTasks = appState.history[d]?.butku?.tasks || [];
+        const fbD = appState.history[d]?.dumbo?.feedbackGivenToPartner?.shine;
+        const fbB = appState.history[d]?.butku?.feedbackGivenToPartner?.shine;
+        return dTasks.length > 0 || bTasks.length > 0 || fbD || fbB;
+      });
+
+      if (!hasContent) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6" class="py-6 text-center text-slate-400 text-xs">
+              No historical data yet. Add and check tasks to generate your couple memory log! 🌱
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      dates.forEach(dStr => {
+        const dData = appState.history[dStr];
+        const dumboPct = calculateDayPct(dStr, 'dumbo');
+        const butkuPct = calculateDayPct(dStr, 'butku');
+
+        const giftDumbo = dData.rewardsUnlocked?.dumbo;
+        const giftButku = dData.rewardsUnlocked?.butku;
+        const giftsStr = [giftDumbo, giftButku].filter(Boolean).join(', ') || '<span class="text-slate-400">None</span>';
+
+        const fbD = dData.dumbo?.feedbackGivenToPartner?.shine || dData.dumbo?.feedbackGivenToPartner?.mistake;
+        const fbB = dData.butku?.feedbackGivenToPartner?.shine || dData.butku?.feedbackGivenToPartner?.mistake;
+        const fbPresent = (fbD || fbB) ? '✨ Logged' : '<span class="text-slate-400">Pending</span>';
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 transition-colors';
+        tr.innerHTML = `
+          <td class="py-2.5 px-3 font-bold text-slate-800 whitespace-nowrap">
+            ${dStr} ${dStr === getTodayKey() ? '<span class="ml-1 text-[9px] text-pink-600 bg-pink-50 px-1 py-0.2 rounded-full">Today</span>' : ''}
+          </td>
+          <td class="py-2.5 px-2">
+            <span class="font-bold ${dumboPct >= 80 ? 'text-blue-600' : 'text-slate-600'}">
+              ${dumboPct}%
+            </span>
+          </td>
+          <td class="py-2.5 px-2">
+            <span class="font-bold ${butkuPct >= 80 ? 'text-pink-600' : 'text-slate-600'}">
+              ${butkuPct}%
+            </span>
+          </td>
+          <td class="py-2.5 px-3 max-w-[140px] truncate" title="${escapeHTML(giftsStr)}">
+            ${giftsStr}
+          </td>
+          <td class="py-2.5 px-3 text-slate-600">
+            ${fbPresent}
+          </td>
+          <td class="py-2.5 px-3 text-right whitespace-nowrap">
+            <button onclick="viewDateHistory('${dStr}')" class="touch-target px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-pink-50 hover:text-pink-600 font-bold text-[10px] shadow-xs">
+              Open 📂
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function viewDateHistory(dateStr) {
+      document.getElementById('dateSelectPicker').value = dateStr;
+      onDateChanged(dateStr);
+      switchTab('tasks');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* -------------------------------------------------------------
+       13. BACKUP, EXPORT & RESET ACTIONS
+       ------------------------------------------------------------- */
+    function toggleActionMenu() {
+      const menu = document.getElementById('actionMenuDropdown');
+      menu.classList.toggle('hidden');
+    }
+
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('actionMenuDropdown');
+      if (menu && !menu.contains(e.target) && !e.target.closest('button[onclick="toggleActionMenu()"]')) {
+        menu.classList.add('hidden');
+      }
+    });
+
+    function exportDataBackup() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `grow_together_backup_${getTodayKey()}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast('Backup exported! Keep it safe 💾');
+    }
+
+    function importDataBackup(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (parsed && parsed.history) {
+            appState = parsed;
+            saveState(appState);
+            switchUser(appState.activeUser || 'dumbo');
+            showToast('Backup restored successfully! 💖');
+          } else {
+            showToast('Invalid backup file structure.');
+          }
+        } catch (err) {
+          showToast('Failed to parse backup JSON.');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function promptResetAllData() {
+      document.getElementById('resetConfirmModal').classList.remove('hidden');
+    }
+
+    function closeResetModal() {
+      document.getElementById('resetConfirmModal').classList.add('hidden');
+    }
+
+    function executeResetAllData() {
+      localStorage.removeItem(STORAGE_KEY);
+      appState = generateCleanZeroState();
+      saveState(appState);
+      selectedDateKey = getTodayKey();
+      document.getElementById('dateSelectPicker').value = selectedDateKey;
+      closeResetModal();
+      switchUser('dumbo');
+      switchTab('tasks');
+      showToast('All data reset to zero. Completely clean start! 💖');
+    }
+
+    /* -------------------------------------------------------------
+       14. TOAST NOTIFICATIONS & SANITIZATION
+       ------------------------------------------------------------- */
+    function showToast(msg) {
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-20 md:bottom-6 right-4 left-4 md:left-auto z-50 bg-slate-950 text-white text-xs font-bold px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-2.5 border border-slate-800 max-w-sm transition-all duration-300';
+      toast.innerHTML = `
+        <span class="text-lg">🌸</span>
+        <div class="flex-1">${escapeHTML(msg)}</div>
+      `;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    /* -------------------------------------------------------------
+       15. APP INITIALIZATION
+       ------------------------------------------------------------- */
+    window.onload = function() {
+      document.getElementById('dateSelectPicker').value = selectedDateKey;
+      document.getElementById('currentDateDisplay').innerText = 'Today (' + selectedDateKey + ')';
+      switchUser(appState.activeUser || 'dumbo');
+      switchTab('tasks');
+    };
+  </script>
+</body>
+</html>
