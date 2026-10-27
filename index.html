@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>Grow Together 💖 | Dumbo & Butku</title>
+  <title>Grow Together 💖 | Dumbo & Butku Bestie Tracker</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -11,10 +11,10 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- Canvas Confetti CDN -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -23,7 +23,6 @@
         extend: {
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            serif: ['"Playfair Display"', 'Georgia', 'serif'],
           },
           screens: {
             'xs': '380px',
@@ -34,14 +33,13 @@
   </script>
 
   <style>
-    /* Safe-area insets for notched devices & modern mobile browsers */
     :root {
       --sat: env(safe-area-inset-top, 0px);
       --sab: env(safe-area-inset-bottom, 0px);
     }
     
     body {
-      background: radial-gradient(circle at 10% 10%, #fef2f8 0%, #f5f3ff 45%, #eff6ff 100%);
+      background: radial-gradient(circle at 10% 10%, #f0fdf4 0%, #f8fafc 40%, #eff6ff 100%);
       min-height: 100vh;
       min-height: 100dvh;
       padding-bottom: calc(5.2rem + var(--sab));
@@ -50,20 +48,18 @@
 
     @media (min-width: 1024px) {
       body {
-        padding-bottom: 2rem;
+        padding-bottom: 2.5rem;
       }
     }
 
-    /* Glassmorphism card utility */
     .glass-card {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      box-shadow: 0 8px 24px -4px rgba(236, 72, 153, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
     }
 
-    /* Custom smooth scrollbar */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -72,57 +68,55 @@
       scrollbar-width: none;
     }
     
-    /* Touch target min-height utility */
     .touch-target {
       min-width: 44px;
       min-height: 44px;
     }
 
-    /* Smooth tab transition */
     .tab-content {
-      animation: fadeIn 0.2s ease-in-out;
+      animation: tabFadeIn 0.2s ease-in-out;
     }
-    @keyframes fadeIn {
+    @keyframes tabFadeIn {
       from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
-<body class="text-slate-800 antialiased font-sans selection:bg-pink-200">
+<body class="text-slate-800 antialiased font-sans selection:bg-amber-200">
 
-  <!-- ================= TOP STICKY NOTIFICATION LOVE NOTE BANNER ================= -->
+  <!-- ================= TOP STICKY BESTIE BULLETIN BANNER ================= -->
   <div id="partnerBanner" class="sticky top-0 z-40 transition-all duration-300 shadow-sm border-b backdrop-blur-md">
-    <!-- Injected via JS -->
+    <!-- Injected dynamically via JS -->
   </div>
 
   <!-- ================= MAIN CONTAINER ================= -->
   <main class="max-w-6xl mx-auto px-3.5 sm:px-6 lg:px-8 py-3.5 sm:py-6 space-y-4 sm:space-y-6">
 
-    <!-- Top App Bar: Brand + Quick Partner Switcher + Actions -->
+    <!-- Top App Bar: Brand + Quick Bestie Switcher + Settings -->
     <header class="glass-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 flex flex-col md:flex-row items-center justify-between gap-3.5">
       
-      <!-- Brand & Date Context -->
+      <!-- Brand & Buddy Identity -->
       <div class="flex items-center gap-3 w-full md:w-auto">
-        <div class="w-11 h-11 sm:w-13 sm:h-13 rounded-2xl flex items-center justify-center text-2xl shadow-sm bg-gradient-to-tr from-pink-400 via-rose-400 to-indigo-500 text-white flex-shrink-0">
+        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center text-2xl shadow-sm bg-gradient-to-tr from-emerald-500 via-teal-500 to-indigo-600 text-white flex-shrink-0">
           💖
         </div>
         <div class="min-w-0 flex-1">
           <div class="flex items-center gap-2">
-            <h1 class="text-lg sm:text-2xl font-black tracking-tight bg-gradient-to-r from-pink-600 to-indigo-600 bg-clip-text text-transparent truncate">
+            <h1 class="text-lg sm:text-2xl font-black tracking-tight bg-gradient-to-r from-slate-900 via-indigo-950 to-teal-800 bg-clip-text text-transparent truncate">
               Grow Together
             </h1>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-pink-100 text-pink-700 uppercase">Couple Sync</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 uppercase tracking-wide">Bestie Sync</span>
           </div>
           <p class="text-[11px] sm:text-xs text-slate-500 font-medium truncate">
-            Dumbo <span class="text-blue-600 font-semibold">(Rakeshkumar)</span> &amp; Butku <span class="text-pink-600 font-semibold">(Diya)</span>
+            Dumbo <span class="text-blue-600 font-bold">(Rakeshkumar)</span> &amp; Butku <span class="text-teal-600 font-bold">(Diya)</span> • Growth Buddies
           </p>
         </div>
       </div>
 
-      <!-- Thumb-Friendly Partner Segmented Switcher & Quick Buttons -->
+      <!-- Segmented Switcher & Quick Buttons -->
       <div class="flex items-center justify-between md:justify-end gap-2 w-full md:w-auto">
-        <!-- Segmented Control (Large 44px touch targets) -->
-        <div class="bg-slate-100/90 p-1 rounded-2xl flex items-center shadow-inner border border-slate-200/70 flex-1 sm:flex-initial">
+        <!-- Segmented Control -->
+        <div class="bg-slate-100/90 p-1 rounded-2xl flex items-center shadow-inner border border-slate-200/80 flex-1 sm:flex-initial">
           <button id="btnSwitchDumbo" onclick="switchUser('dumbo')" class="touch-target flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200">
             <span class="text-base sm:text-lg">🐘</span>
             <div class="text-left leading-tight">
@@ -139,18 +133,18 @@
           </button>
         </div>
 
-        <!-- Note Button -->
-        <button onclick="openEndDayModal()" class="touch-target px-3 sm:px-4 py-2 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold text-xs shadow-sm flex items-center gap-1.5 flex-shrink-0" title="Leave Love Note for Partner">
-          <span class="text-sm">💌</span>
-          <span class="hidden sm:inline">Love Note</span>
+        <!-- Ping / Morning Banter Button -->
+        <button onclick="openPingModal()" class="touch-target px-3 sm:px-4 py-2 rounded-xl bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold text-xs shadow-sm flex items-center gap-1.5 flex-shrink-0" title="Leave Morning Ping or Roast">
+          <span class="text-sm">📣</span>
+          <span class="hidden sm:inline">Buddy Ping</span>
         </button>
 
-        <!-- More actions: Backup & Reset Dropdown -->
+        <!-- Settings / Backup Dropdown -->
         <div class="relative flex-shrink-0">
           <button onclick="toggleActionMenu()" class="touch-target w-11 h-11 rounded-xl bg-white border border-slate-200 text-slate-600 flex items-center justify-center shadow-xs hover:bg-slate-50 transition" title="Settings & Backup">
             ⚙️
           </button>
-          <div id="actionMenuDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-slate-100 py-1.5 z-50 text-xs font-semibold">
+          <div id="actionMenuDropdown" class="hidden absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-slate-100 py-1.5 z-50 text-xs font-semibold">
             <button onclick="exportDataBackup()" class="w-full text-left px-4 py-2.5 hover:bg-slate-50 text-slate-700 flex items-center gap-2">
               <span>📥 Export Backup (JSON)</span>
             </button>
@@ -160,61 +154,61 @@
             </label>
             <div class="border-t border-slate-100 my-1"></div>
             <button onclick="promptResetAllData()" class="w-full text-left px-4 py-2.5 hover:bg-rose-50 text-rose-600 flex items-center gap-2">
-              <span>🗑️ Reset All to Zero</span>
+              <span>🗑️ Reset All Data to Zero</span>
             </button>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Context Date & Day Quick Navigator -->
+    <!-- Date Quick Navigator -->
     <div class="glass-card rounded-2xl p-3 sm:p-4 flex flex-col xs:flex-row items-center justify-between gap-2.5">
       <div class="flex items-center gap-2.5 w-full xs:w-auto">
-        <span id="currentUserAvatar" class="text-2xl p-2 rounded-xl bg-white shadow-xs">🐘</span>
+        <span id="currentUserAvatar" class="text-2xl p-2 rounded-xl bg-white shadow-xs">😊</span>
         <div class="min-w-0">
           <div class="flex items-center gap-1.5">
             <h2 id="currentUserNameDisplay" class="text-xs sm:text-sm font-extrabold text-slate-800 truncate">Dumbo (Rakeshkumar)</h2>
-            <span id="currentUserRoleTag" class="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-blue-100 text-blue-700">Active</span>
+            <span id="currentUserRoleTag" class="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-blue-100 text-blue-700">Accountability Lead</span>
           </div>
-          <p class="text-[11px] text-slate-500 font-medium truncate">Day tracker: <span id="currentDateDisplay" class="font-bold text-slate-700">Today</span></p>
+          <p class="text-[11px] text-slate-500 font-medium truncate">Selected Day: <span id="currentDateDisplay" class="font-bold text-slate-700">Today</span></p>
         </div>
       </div>
 
-      <!-- Date selector with touch styling -->
+      <!-- Date selector buttons -->
       <div class="flex items-center gap-2 w-full xs:w-auto justify-end">
         <button onclick="shiftDate(-1)" class="touch-target w-9 h-9 rounded-xl bg-white border border-slate-200 text-slate-700 flex items-center justify-center font-bold text-xs hover:bg-slate-50 shadow-xs" title="Previous Day">◀</button>
-        <input type="date" id="dateSelectPicker" onchange="onDateChanged(this.value)" class="touch-target text-xs font-semibold border border-slate-200 rounded-xl px-2.5 py-1.5 bg-white text-slate-700 shadow-xs focus:ring-2 focus:ring-pink-300 focus:outline-none" />
+        <input type="date" id="dateSelectPicker" onchange="onDateChanged(this.value)" class="touch-target text-xs font-semibold border border-slate-200 rounded-xl px-2.5 py-1.5 bg-white text-slate-700 shadow-xs focus:ring-2 focus:ring-teal-400 focus:outline-none" />
         <button onclick="shiftDate(1)" class="touch-target w-9 h-9 rounded-xl bg-white border border-slate-200 text-slate-700 flex items-center justify-center font-bold text-xs hover:bg-slate-50 shadow-xs" title="Next Day">▶</button>
         <button onclick="jumpToToday()" class="touch-target px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-[11px] font-bold text-slate-700 shadow-xs">Today</button>
       </div>
     </div>
 
-    <!-- Desktop Tab Navigation (Hidden on small mobile; synchronized with mobile bottom bar) -->
+    <!-- Desktop Tab Bar (Hidden on Mobile) -->
     <nav class="hidden md:flex items-center gap-2 border-b border-slate-200/80 pb-2 overflow-x-auto no-scrollbar">
       <button onclick="switchTab('tasks')" class="desk-tab-btn px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 bg-slate-900 text-white shadow-xs" data-tab="tasks">
         <span>🎯 Daily Tasks</span>
       </button>
       <button onclick="switchTab('gifts')" class="desk-tab-btn px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 bg-white text-slate-600 hover:bg-slate-100" data-tab="gifts">
-        <span>🎁 Gift Coupons</span>
+        <span>🎁 Bestie Perks</span>
       </button>
       <button onclick="switchTab('growth')" class="desk-tab-btn px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 bg-white text-slate-600 hover:bg-slate-100" data-tab="growth">
-        <span>🌱 Mutual Reflection</span>
+        <span>🔥 Buddy Review</span>
       </button>
       <button onclick="switchTab('analytics')" class="desk-tab-btn px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 bg-white text-slate-600 hover:bg-slate-100" data-tab="analytics">
-        <span>📈 Growth Charts</span>
+        <span>📈 Growth Stats</span>
       </button>
       <button onclick="switchTab('history')" class="desk-tab-btn px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 bg-white text-slate-600 hover:bg-slate-100" data-tab="history">
         <span>📅 Past Log</span>
       </button>
     </nav>
 
-    <!-- Top KPI Highlights Grid (Day-over-day, Weekly, Streak, Reward Status) -->
+    <!-- Top KPI Highlights Grid (DoD Growth, Weekly Avg, Bestie Streak, Perk Status) -->
     <section class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
       
       <!-- Day Over Day Growth -->
       <div class="glass-card p-3 sm:p-4 rounded-2xl flex flex-col justify-between">
         <div class="flex items-center justify-between gap-1">
-          <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 truncate">DoD Growth</span>
+          <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 truncate">DoD Momentum</span>
           <span id="dodGrowthBadge" class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600">0%</span>
         </div>
         <div class="mt-2">
@@ -227,37 +221,37 @@
       <div class="glass-card p-3 sm:p-4 rounded-2xl flex flex-col justify-between">
         <div class="flex items-center justify-between gap-1">
           <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 truncate">Weekly Avg</span>
-          <span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-indigo-100 text-indigo-700">7-Day</span>
+          <span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-teal-100 text-teal-700">7-Day</span>
         </div>
         <div class="mt-2">
-          <div id="weeklyScoreValue" class="text-xl sm:text-2xl font-black text-indigo-600">0/100</div>
+          <div id="weeklyScoreValue" class="text-xl sm:text-2xl font-black text-teal-600">0/100</div>
           <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden mt-1.5">
-            <div id="weeklyScoreBar" class="bg-gradient-to-r from-blue-500 to-indigo-500 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+            <div id="weeklyScoreBar" class="bg-gradient-to-r from-teal-500 to-indigo-500 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
           </div>
         </div>
       </div>
 
-      <!-- Mutual Sync Streak -->
+      <!-- Mutual Bestie Streak -->
       <div class="glass-card p-3 sm:p-4 rounded-2xl flex flex-col justify-between">
         <div class="flex items-center justify-between gap-1">
-          <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 truncate">Sync Streak</span>
+          <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 truncate">Hustle Streak</span>
           <span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-800">🔥 Sync</span>
         </div>
         <div class="mt-2">
           <div id="streakCountValue" class="text-xl sm:text-2xl font-black text-amber-600">0 Days</div>
-          <p class="text-[10px] sm:text-xs text-slate-500 truncate mt-0.5">Keep in sync daily</p>
+          <p class="text-[10px] sm:text-xs text-slate-500 truncate mt-0.5">Don't let each other slack</p>
         </div>
       </div>
 
-      <!-- Reward Box Status -->
-      <div class="glass-card p-3 sm:p-4 rounded-2xl flex flex-col justify-between border-pink-200">
+      <!-- Reward Perk Box -->
+      <div class="glass-card p-3 sm:p-4 rounded-2xl flex flex-col justify-between border-teal-200">
         <div class="flex items-center justify-between gap-1">
-          <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-pink-600 truncate">Gift Status</span>
+          <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-teal-600 truncate">Perk Status</span>
           <span id="giftStatusTag" class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600">0%</span>
         </div>
         <div class="mt-2">
           <div id="giftStatusTitle" class="text-sm sm:text-base font-extrabold text-slate-800 truncate">Locked 🔒</div>
-          <p id="giftStatusSub" class="text-[10px] sm:text-xs text-pink-500 font-semibold truncate mt-0.5">80% unlocks coupon</p>
+          <p id="giftStatusSub" class="text-[10px] sm:text-xs text-teal-600 font-semibold truncate mt-0.5">80% unlocks bestie coupon</p>
         </div>
       </div>
     </section>
@@ -270,172 +264,171 @@
         <div class="flex items-center justify-between gap-3 pb-3 border-b border-slate-100">
           <div>
             <h3 class="text-base sm:text-lg font-black text-slate-800 flex items-center gap-1.5">
-              <span>🎯 Day-to-Day Task Checklist</span>
+              <span>🎯 Day-to-Day Target Checklist</span>
             </h3>
-            <p class="text-[11px] sm:text-xs text-slate-500">Tick off tasks as you accomplish them</p>
+            <p class="text-[11px] sm:text-xs text-slate-500">Tick off study goals, workouts, and daily grind targets</p>
           </div>
           <div class="text-right">
-            <span id="taskProgressPercentage" class="text-xl sm:text-2xl font-black text-pink-600">0%</span>
+            <span id="taskProgressPercentage" class="text-xl sm:text-2xl font-black text-teal-600">0%</span>
             <span class="block text-[10px] text-slate-400 font-semibold" id="taskFractionCompleted">0/0 done</span>
           </div>
         </div>
 
-        <!-- Visual Progress Bar with milestones at 80% and 100% -->
+        <!-- Progress Bar with 80% and 100% Milestones -->
         <div class="relative my-4">
           <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden p-0.5 border border-slate-200/60">
-            <div id="taskProgressBar" class="h-full rounded-full transition-all duration-500 bg-gradient-to-r from-pink-400 via-rose-500 to-indigo-500" style="width: 0%"></div>
+            <div id="taskProgressBar" class="h-full rounded-full transition-all duration-500 bg-gradient-to-r from-teal-400 via-emerald-500 to-indigo-600" style="width: 0%"></div>
           </div>
-          <!-- Milestone markers -->
           <div class="flex justify-between text-[10px] font-bold text-slate-400 mt-1 px-1">
             <span>0%</span>
-            <span class="text-purple-600">80% (Gift Box 🎁)</span>
-            <span class="text-amber-600">100% (Jackpot ⭐)</span>
+            <span class="text-teal-600">80% (Perk Unlocked 🎁)</span>
+            <span class="text-amber-600">100% (Ultimate Favor ⭐)</span>
           </div>
         </div>
 
-        <!-- Add Task Form: Mobile Touch Optimized -->
+        <!-- Add Task Form -->
         <form onsubmit="handleAddTask(event)" class="mb-4 p-2.5 sm:p-3.5 bg-slate-50 rounded-2xl border border-slate-200/70 flex flex-col sm:flex-row gap-2">
-          <input type="text" id="newTaskInput" placeholder="Add custom goal or habit..." required class="touch-target flex-1 text-xs sm:text-sm bg-white border border-slate-200 rounded-xl px-3 py-2 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-pink-300" />
+          <input type="text" id="newTaskInput" placeholder="Add study goal, workout, habit, or project task..." required class="touch-target flex-1 text-xs sm:text-sm bg-white border border-slate-200 rounded-xl px-3 py-2 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-400" />
           
           <div class="flex items-center gap-2">
-            <select id="newTaskCategory" class="touch-target text-xs bg-white border border-slate-200 rounded-xl px-2.5 py-2 text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-pink-300 flex-1 sm:flex-initial">
-              <option value="Health">💪 Health</option>
-              <option value="Work">💼 Work &amp; Study</option>
-              <option value="Personal">🧘 Personal</option>
-              <option value="Habits">🌱 Habits</option>
-              <option value="Relationship">💖 Couple</option>
+            <select id="newTaskCategory" class="touch-target text-xs bg-white border border-slate-200 rounded-xl px-2.5 py-2 text-slate-700 font-semibold focus:outline-none focus:ring-2 focus:ring-teal-400 flex-1 sm:flex-initial">
+              <option value="Study/Work">📚 Study/Work</option>
+              <option value="Fitness">💪 Fitness</option>
+              <option value="Skills/CAD">⚡ Skills / CAD</option>
+              <option value="Personal Habits">🧘 Personal Habits</option>
+              <option value="Daily Grind">🚀 Daily Grind</option>
             </select>
             <button type="submit" class="touch-target px-4 py-2 bg-slate-900 hover:bg-black text-white text-xs font-extrabold rounded-xl shadow-sm transition flex-shrink-0 flex items-center justify-center gap-1">
-              <span>+ Add</span>
+              <span>+ Add Target</span>
             </button>
           </div>
         </form>
 
-        <!-- Swipeable Category Filter Pills -->
+        <!-- Category Filters -->
         <div class="flex items-center gap-1.5 overflow-x-auto pb-2 no-scrollbar text-xs mb-3">
           <button onclick="filterTasks('all')" class="cat-filter-btn touch-target px-3.5 py-1.5 rounded-xl font-bold bg-slate-900 text-white flex-shrink-0" data-cat="all">All</button>
-          <button onclick="filterTasks('Health')" class="cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50" data-cat="Health">💪 Health</button>
-          <button onclick="filterTasks('Work')" class="cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50" data-cat="Work">💼 Work</button>
-          <button onclick="filterTasks('Personal')" class="cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50" data-cat="Personal">🧘 Personal</button>
-          <button onclick="filterTasks('Habits')" class="cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50" data-cat="Habits">🌱 Habits</button>
-          <button onclick="filterTasks('Relationship')" class="cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50" data-cat="Relationship">💖 Couple</button>
+          <button onclick="filterTasks('Study/Work')" class="cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50" data-cat="Study/Work">📚 Study/Work</button>
+          <button onclick="filterTasks('Fitness')" class="cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50" data-cat="Fitness">💪 Fitness</button>
+          <button onclick="filterTasks('Skills/CAD')" class="cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50" data-cat="Skills/CAD">⚡ Skills/CAD</button>
+          <button onclick="filterTasks('Personal Habits')" class="cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50" data-cat="Personal Habits">🧘 Habits</button>
+          <button onclick="filterTasks('Daily Grind')" class="cat-filter-btn touch-target px-3 py-1.5 rounded-xl font-semibold bg-white border border-slate-200 text-slate-700 flex-shrink-0 hover:bg-slate-50" data-cat="Daily Grind">🚀 Grind</button>
         </div>
 
-        <!-- Task List Items (min 44px tap targets) -->
+        <!-- Task List Items -->
         <div id="taskListContainer" class="space-y-2 max-h-[480px] overflow-y-auto pr-0.5">
-          <!-- Dynamic tasks rendered via JavaScript -->
+          <!-- Dynamically populated via JavaScript -->
         </div>
 
-        <!-- Footer claim button -->
+        <!-- Footer Claim Button -->
         <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-          <span class="text-slate-500 text-[11px]">80% = Surprise Gift Coupon 🎁</span>
-          <button onclick="checkAndTriggerCelebration(true)" class="touch-target px-3 py-1.5 rounded-xl bg-pink-50 hover:bg-pink-100 text-pink-700 font-bold transition flex items-center gap-1">
-            <span>Claim / Inspect Reward ✨</span>
+          <span class="text-slate-500 text-[11px]">80%+ = Unlock Bestie Perk / Treat Coupon 🎁</span>
+          <button onclick="checkAndTriggerCelebration(true)" class="touch-target px-3 py-1.5 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold transition flex items-center gap-1">
+            <span>Check &amp; Claim Bestie Perk ✨</span>
           </button>
         </div>
       </div>
     </section>
 
-    <!-- ================= TAB 2: COUPON REWARDS & GIFTS ================= -->
+    <!-- ================= TAB 2: BESTIE PERKS & TREAT COUPONS ================= -->
     <section id="tab-gifts" class="tab-content hidden space-y-4">
-      <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 border-pink-200">
+      <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 border-teal-200">
         <div class="flex items-center justify-between gap-3 mb-4">
           <div>
             <h3 class="text-base sm:text-lg font-black text-slate-800 flex items-center gap-1.5">
-              <span>🎁 Couple Privilege &amp; Reward Coupons</span>
+              <span>🎁 Bestie Privilege &amp; Treat Coupons</span>
             </h3>
-            <p class="text-[11px] sm:text-xs text-slate-500">Earned when daily tasks reach 80% or 100% fulfillment</p>
+            <p class="text-[11px] sm:text-xs text-slate-500">Earned when daily tasks cross 80% or 100% completion</p>
           </div>
           <span class="text-3xl">🎟️</span>
         </div>
 
         <!-- Coupons Grid -->
         <div id="giftCouponsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <!-- Injected via JS -->
+          <!-- Populated dynamically via JS -->
         </div>
       </div>
     </section>
 
-    <!-- ================= TAB 3: MUTUAL REFLECTION & CONSTRUCTIVE FEEDBACK ================= -->
+    <!-- ================= TAB 3: MUTUAL REVIEW & BESTIE REAL TALK ================= -->
     <section id="tab-growth" class="tab-content hidden space-y-4">
       <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6">
         <div class="flex items-center justify-between gap-3 mb-3">
           <div class="flex items-center gap-2">
-            <span class="text-2xl">🌱</span>
+            <span class="text-2xl">🔥</span>
             <div>
-              <h3 class="text-base sm:text-lg font-black text-slate-800">Mutual Growth Reflection</h3>
-              <p id="feedbackTargetSub" class="text-[11px] sm:text-xs text-slate-500">Constructive feedback for partner</p>
+              <h3 class="text-base sm:text-lg font-black text-slate-800">Bestie Accountability Review</h3>
+              <p id="feedbackTargetSub" class="text-[11px] sm:text-xs text-slate-500">Constructive feedback &amp; high-fives for partner</p>
             </div>
           </div>
-          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">Safe Space</span>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">Growth Pact</span>
         </div>
 
         <p class="text-xs text-slate-600 mb-4 leading-relaxed">
-          Growth comes from honesty delivered with love. Highlight proud moments and gently discuss any mistake so both can improve hand-in-hand.
+          Best friends push each other forward. Give kudos for crushing goals, and don't hesitate to give honest feedback if the other slacked or made a mistake.
         </p>
 
         <div class="space-y-3.5">
-          <!-- Positive / Where they shined -->
+          <!-- Praise / Where they shined -->
           <div class="p-3 sm:p-4 rounded-2xl bg-amber-50/80 border border-amber-200">
             <div class="flex items-center gap-1.5 mb-1.5">
-              <span class="text-amber-500 text-sm">✨</span>
-              <h4 id="feedbackShineLabel" class="text-xs font-bold text-amber-900 uppercase tracking-wide">Where partner shined today:</h4>
+              <span class="text-amber-500 text-sm">🔥</span>
+              <h4 id="feedbackShineLabel" class="text-xs font-bold text-amber-900 uppercase tracking-wide">Where you crushed it today (High-Five):</h4>
             </div>
-            <textarea id="feedbackShineInput" rows="2" placeholder="Tell what they did great today..." class="w-full text-xs bg-white border border-amber-200 rounded-xl p-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-300"></textarea>
+            <textarea id="feedbackShineInput" rows="2" placeholder="Tell what your bestie dominated today (e.g., solved 5 problems, finished workout, stayed focused)..." class="w-full text-xs bg-white border border-amber-200 rounded-xl p-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-300"></textarea>
           </div>
 
-          <!-- Constructive / Area to grow -->
+          <!-- Real Talk / Mistakes / Where they slacked -->
           <div class="p-3 sm:p-4 rounded-2xl bg-indigo-50/80 border border-indigo-200">
             <div class="flex items-center gap-1.5 mb-1.5">
-              <span class="text-indigo-500 text-sm">💡</span>
-              <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wide">A mistake or area to improve together:</h4>
+              <span class="text-indigo-600 text-sm">🎯</span>
+              <h4 class="text-xs font-bold text-indigo-900 uppercase tracking-wide">Bestie Real Talk / Where you slacked or can level up:</h4>
             </div>
-            <textarea id="feedbackImproveInput" rows="2" placeholder="Gently note any misstep, habit to fix, or stressful moment..." class="w-full text-xs bg-white border border-indigo-200 rounded-xl p-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-300"></textarea>
+            <textarea id="feedbackImproveInput" rows="2" placeholder="Honest advice (e.g., procrastinated on phone, skipped gym, stayed up too late, don't repeat this mistake)..." class="w-full text-xs bg-white border border-indigo-200 rounded-xl p-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-300"></textarea>
           </div>
 
-          <!-- Day Vibe Selector -->
+          <!-- Buddy Vibe Selector -->
           <div class="flex flex-col xs:flex-row xs:items-center justify-between gap-2 pt-1">
-            <span class="text-xs font-bold text-slate-700">Today's Couple Vibe:</span>
+            <span class="text-xs font-bold text-slate-700">Today's Hustle Vibe:</span>
             <div class="flex items-center gap-1.5" id="vibeSelector">
-              <button type="button" onclick="selectVibe('🥳 Radiant')" class="touch-target vibe-btn text-base p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition" title="Radiant">🥳</button>
-              <button type="button" onclick="selectVibe('💪 Productive')" class="touch-target vibe-btn text-base p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition" title="Productive">💪</button>
-              <button type="button" onclick="selectVibe('🌱 Balanced')" class="touch-target vibe-btn text-base p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition" title="Balanced">🌱</button>
-              <button type="button" onclick="selectVibe('😴 Tired but Tried')" class="touch-target vibe-btn text-base p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition" title="Tired">😴</button>
+              <button type="button" onclick="selectVibe('🔥 Beast Mode')" class="touch-target vibe-btn text-base p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition" title="Beast Mode">🔥</button>
+              <button type="button" onclick="selectVibe('💪 Locked In')" class="touch-target vibe-btn text-base p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition" title="Locked In">💪</button>
+              <button type="button" onclick="selectVibe('🌱 Steady Progress')" class="touch-target vibe-btn text-base p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition" title="Steady Progress">🌱</button>
+              <button type="button" onclick="selectVibe('💀 Slacked a bit')" class="touch-target vibe-btn text-base p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition" title="Slacked a bit">💀</button>
             </div>
           </div>
 
           <button onclick="saveDailyFeedback()" class="touch-target w-full py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-extrabold shadow-sm transition flex items-center justify-center gap-2">
-            <span>💾 Save Reflection for Today</span>
+            <span>💾 Log Today's Bestie Review</span>
           </button>
         </div>
 
-        <!-- Couple Pact -->
-        <div class="mt-4 p-3.5 rounded-2xl bg-gradient-to-r from-pink-50 to-indigo-50 border border-pink-100 flex items-center gap-3">
-          <span class="text-2xl flex-shrink-0">🤝</span>
+        <!-- Bestie Pact -->
+        <div class="mt-4 p-3.5 rounded-2xl bg-gradient-to-r from-teal-50 to-indigo-50 border border-teal-100 flex items-center gap-3">
+          <span class="text-2xl flex-shrink-0">🤜🤛</span>
           <p class="text-[11px] sm:text-xs text-slate-600 leading-snug">
-            <strong>Couple Pact:</strong> "Never let differences turn into distance. We evaluate daily habits to lift each other up, not to blame."
+            <strong>The Bestie Code:</strong> "We don't sugarcoat reality, and we don't let each other give up. We celebrate wins together and bounce back from slip-ups stronger."
           </p>
         </div>
       </div>
     </section>
 
-    <!-- ================= TAB 4: GRAPHICAL ANALYTICS & CHARTS ================= -->
+    <!-- ================= TAB 4: GROWTH STATS & ANALYTICS ================= -->
     <section id="tab-analytics" class="tab-content hidden space-y-4">
       <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-6">
         
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
           <div>
             <h3 class="text-base sm:text-lg font-black text-slate-800 flex items-center gap-2">
-              <span>📈 7-Day Trend &amp; Category Breakdown</span>
+              <span>📈 7-Day Performance &amp; Focus Distribution</span>
             </h3>
-            <p class="text-[11px] sm:text-xs text-slate-500">Visual proof of your daily dedication</p>
+            <p class="text-[11px] sm:text-xs text-slate-500">Quantifiable proof of who is keeping their promises</p>
           </div>
           <div class="flex items-center gap-2">
             <span class="inline-flex items-center gap-1 text-[11px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md">
               <span class="w-2 h-2 rounded-full bg-blue-500 inline-block"></span> Dumbo
             </span>
-            <span class="inline-flex items-center gap-1 text-[11px] font-bold text-pink-700 bg-pink-50 px-2 py-0.5 rounded-md">
-              <span class="w-2 h-2 rounded-full bg-pink-500 inline-block"></span> Butku
+            <span class="inline-flex items-center gap-1 text-[11px] font-bold text-teal-700 bg-teal-50 px-2 py-0.5 rounded-md">
+              <span class="w-2 h-2 rounded-full bg-teal-500 inline-block"></span> Butku
             </span>
           </div>
         </div>
@@ -445,10 +438,9 @@
           <!-- 7-Day Completion Line Chart -->
           <div class="lg:col-span-8 bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-100 shadow-xs">
             <div class="flex items-center justify-between mb-2">
-              <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wide">Fulfillment Trend (%)</h4>
+              <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wide">Completion Rate (%)</h4>
               <span class="text-[10px] text-slate-400">Past 7 Days</span>
             </div>
-            <!-- Fixed Height Responsive Chart Container -->
             <div class="relative h-60 sm:h-72 w-full">
               <canvas id="trendChart"></canvas>
             </div>
@@ -457,49 +449,48 @@
           <!-- Category Doughnut Chart -->
           <div class="lg:col-span-4 bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-100 shadow-xs flex flex-col justify-between">
             <div class="flex items-center justify-between mb-2">
-              <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wide">Category Balance</h4>
-              <span class="text-[10px] text-slate-400">Completed</span>
+              <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wide">Category Focus</h4>
+              <span class="text-[10px] text-slate-400">Completed Goals</span>
             </div>
             <div class="relative h-56 sm:h-60 w-full flex items-center justify-center">
               <canvas id="categoryChart"></canvas>
             </div>
-            <p id="categoryEmptyLabel" class="text-[10px] text-slate-400 text-center mt-2">Health, Work, Personal, Habits &amp; Couple</p>
+            <p id="categoryEmptyLabel" class="text-[10px] text-slate-400 text-center mt-2">Study, Fitness, Skills, Habits &amp; Grind</p>
           </div>
         </div>
 
-        <!-- All-Time Finished Tasks Pill Summary -->
+        <!-- Total Finished Targets Summary -->
         <div class="grid grid-cols-2 gap-2 text-center pt-2">
           <div class="p-2.5 rounded-xl bg-blue-50/80 border border-blue-100">
             <span class="text-base">🐘</span>
-            <div id="statDumboTasks" class="text-sm sm:text-base font-black text-blue-700">0 done</div>
-            <span class="text-[9px] sm:text-[10px] text-slate-500 font-semibold">Dumbo (Rakesh)</span>
+            <div id="statDumboTasks" class="text-sm sm:text-base font-black text-blue-700">0 completed</div>
+            <span class="text-[9px] sm:text-[10px] text-slate-500 font-semibold">Dumbo (Rakeshkumar)</span>
           </div>
-          <div class="p-2.5 rounded-xl bg-pink-50/80 border border-pink-100">
+          <div class="p-2.5 rounded-xl bg-teal-50/80 border border-teal-100">
             <span class="text-base">🐧</span>
-            <div id="statButkuTasks" class="text-sm sm:text-base font-black text-pink-700">0 done</div>
+            <div id="statButkuTasks" class="text-sm sm:text-base font-black text-teal-700">0 completed</div>
             <span class="text-[9px] sm:text-[10px] text-slate-500 font-semibold">Butku (Diya)</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= TAB 5: PAST DATA HISTORY LOG ================= -->
+    <!-- ================= TAB 5: PAST HISTORY LOG ================= -->
     <section id="tab-history" class="tab-content hidden space-y-4">
       <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-4">
         
         <div class="flex items-center justify-between gap-3 border-b border-slate-100 pb-3">
           <div>
             <h3 class="text-base sm:text-lg font-black text-slate-800 flex items-center gap-1.5">
-              <span>📅 History &amp; Growth Archive</span>
+              <span>📅 Bestie Archive &amp; Past Log</span>
             </h3>
-            <p class="text-[11px] sm:text-xs text-slate-500">Past dates, completed rates, rewards, and feedback logs</p>
+            <p class="text-[11px] sm:text-xs text-slate-500">Historical performance, treat rewards, and accountability notes</p>
           </div>
           <button onclick="renderHistoryLog()" class="touch-target px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold text-slate-700 transition">
             Refresh
           </button>
         </div>
 
-        <!-- Responsive Table Container -->
         <div class="overflow-x-auto no-scrollbar -mx-2 sm:mx-0">
           <div class="inline-block min-w-full align-middle">
             <table class="min-w-full text-left text-xs border-collapse">
@@ -508,9 +499,9 @@
                   <th class="py-2.5 px-3">Date</th>
                   <th class="py-2.5 px-2">Dumbo 🐘</th>
                   <th class="py-2.5 px-2">Butku 🐧</th>
-                  <th class="py-2.5 px-3">Gifts Earned</th>
-                  <th class="py-2.5 px-3">Reflection Status</th>
-                  <th class="py-2.5 px-3 text-right">View</th>
+                  <th class="py-2.5 px-3">Perk / Treat Won</th>
+                  <th class="py-2.5 px-3">Review Status</th>
+                  <th class="py-2.5 px-3 text-right">Inspect</th>
                 </tr>
               </thead>
               <tbody id="historyTableBody" class="divide-y divide-slate-100 text-slate-700 font-medium">
@@ -525,95 +516,94 @@
   </main>
 
   <!-- ================= MOBILE FIXED BOTTOM NAVIGATION BAR ================= -->
-  <!-- Designed with 44px+ touch targets and bottom safe area support -->
   <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-t border-slate-200/80 px-2 pt-1.5 pb-[calc(0.4rem+var(--sab))] shadow-lg">
     <div class="max-w-md mx-auto grid grid-cols-5 gap-1 text-center">
       
-      <button onclick="switchTab('tasks')" class="mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-pink-600 font-extrabold transition" data-tab="tasks">
+      <button onclick="switchTab('tasks')" class="mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-teal-600 font-extrabold transition" data-tab="tasks">
         <span class="text-lg leading-none">🎯</span>
-        <span class="text-[10px] font-bold mt-0.5">Tasks</span>
+        <span class="text-[10px] font-bold mt-0.5">Targets</span>
       </button>
 
       <button onclick="switchTab('gifts')" class="mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-slate-400 font-medium transition" data-tab="gifts">
         <span class="text-lg leading-none">🎁</span>
-        <span class="text-[10px] mt-0.5">Gifts</span>
+        <span class="text-[10px] mt-0.5">Perks</span>
       </button>
 
       <button onclick="switchTab('growth')" class="mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-slate-400 font-medium transition" data-tab="growth">
-        <span class="text-lg leading-none">🌱</span>
-        <span class="text-[10px] mt-0.5">Reflection</span>
+        <span class="text-lg leading-none">🔥</span>
+        <span class="text-[10px] mt-0.5">Review</span>
       </button>
 
       <button onclick="switchTab('analytics')" class="mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-slate-400 font-medium transition" data-tab="analytics">
         <span class="text-lg leading-none">📈</span>
-        <span class="text-[10px] mt-0.5">Charts</span>
+        <span class="text-[10px] mt-0.5">Stats</span>
       </button>
 
       <button onclick="switchTab('history')" class="mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-slate-400 font-medium transition" data-tab="history">
         <span class="text-lg leading-none">📅</span>
-        <span class="text-[10px] mt-0.5">History</span>
+        <span class="text-[10px] mt-0.5">Archive</span>
       </button>
 
     </div>
   </nav>
 
-  <!-- ================= MODAL: END-OF-DAY PARTNER LOVE NOTE ================= -->
-  <div id="endDayModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-3.5">
+  <!-- ================= MODAL: BESTIE MORNING PING / ROAST ================= -->
+  <div id="pingModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-3.5">
     <div class="glass-card max-w-md w-full rounded-3xl p-5 sm:p-6 shadow-2xl border border-white space-y-3.5">
       <div class="flex items-center justify-between pb-2 border-b border-slate-100">
         <div class="flex items-center gap-2">
-          <span class="text-2xl">💌</span>
-          <h3 class="text-base sm:text-lg font-black text-slate-800">Leave Partner Love Note</h3>
+          <span class="text-2xl">📣</span>
+          <h3 class="text-base sm:text-lg font-black text-slate-800">Post Bestie Ping / Morning Hype</h3>
         </div>
-        <button onclick="closeEndDayModal()" class="touch-target text-slate-400 hover:text-slate-600 text-xl font-bold flex items-center justify-center">✕</button>
+        <button onclick="closePingModal()" class="touch-target text-slate-400 hover:text-slate-600 text-xl font-bold flex items-center justify-center">✕</button>
       </div>
 
       <p class="text-xs text-slate-600 leading-relaxed">
-        Write a supportive or romantic morning greeting. When your partner opens the site tomorrow, it will shine on their top banner!
+        Drop a morning hype message, study challenge, or a playful roast. When your bestie opens the website, it will show on their top bulletin!
       </p>
 
       <div class="space-y-2.5">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1" id="modalFromToLabel">From Dumbo to Butku:</label>
-          <textarea id="modalPartnerMessage" rows="3" placeholder="Good morning sweetheart! You are incredible, let's crush our goals today! 💖" class="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
+          <textarea id="modalPingMessage" rows="3" placeholder="Wake up and lock in! Complete all your study goals today or you're buying chai ☕🔥" class="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-teal-400"></textarea>
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Select an Inspiring Sticker:</label>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Pick a Buddy Badge Sticker:</label>
           <div class="flex items-center gap-2 text-xl" id="modalStickerRow">
-            <button type="button" onclick="selectModalSticker('💖 Sweet Love')" class="touch-target modal-stk p-2 rounded-xl bg-pink-100 border border-pink-300">💖</button>
-            <button type="button" onclick="selectModalSticker('🌟 Proud of You')" class="touch-target modal-stk p-2 rounded-xl bg-white border border-slate-200">🌟</button>
-            <button type="button" onclick="selectModalSticker('☕ Morning Fuel')" class="touch-target modal-stk p-2 rounded-xl bg-white border border-slate-200">☕</button>
-            <button type="button" onclick="selectModalSticker('🔥 Keep Crushing It')" class="touch-target modal-stk p-2 rounded-xl bg-white border border-slate-200">🔥</button>
-            <button type="button" onclick="selectModalSticker('🫂 Hugs Always')" class="touch-target modal-stk p-2 rounded-xl bg-white border border-slate-200">🫂</button>
+            <button type="button" onclick="selectModalSticker('⚡ Lock In!')" class="touch-target modal-stk p-2 rounded-xl bg-teal-100 border border-teal-300">⚡</button>
+            <button type="button" onclick="selectModalSticker('☕ Chai Treat')" class="touch-target modal-stk p-2 rounded-xl bg-white border border-slate-200">☕</button>
+            <button type="button" onclick="selectModalSticker('🔥 Beast Mode')" class="touch-target modal-stk p-2 rounded-xl bg-white border border-slate-200">🔥</button>
+            <button type="button" onclick="selectModalSticker('👀 No Slacking')" class="touch-target modal-stk p-2 rounded-xl bg-white border border-slate-200">👀</button>
+            <button type="button" onclick="selectModalSticker('🏆 High Five')" class="touch-target modal-stk p-2 rounded-xl bg-white border border-slate-200">🏆</button>
           </div>
         </div>
       </div>
 
       <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
-        <button onclick="closeEndDayModal()" class="touch-target px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-100">Cancel</button>
-        <button onclick="saveNightMessage()" class="touch-target px-5 py-2 rounded-xl bg-gradient-to-r from-pink-500 to-indigo-600 text-white text-xs font-extrabold shadow-sm hover:opacity-95">Send to Banner 🚀</button>
+        <button onclick="closePingModal()" class="touch-target px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-100">Cancel</button>
+        <button onclick="savePingMessage()" class="touch-target px-5 py-2 rounded-xl bg-gradient-to-r from-teal-600 to-indigo-600 text-white text-xs font-extrabold shadow-sm hover:opacity-95">Send to Bulletin 🚀</button>
       </div>
     </div>
   </div>
 
-  <!-- ================= CELEBRATION MODAL (GIFT UNLOCKED) ================= -->
+  <!-- ================= CELEBRATION MODAL (PERK UNLOCKED) ================= -->
   <div id="celebrationModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-3.5">
-    <div class="glass-card max-w-sm w-full rounded-3xl p-6 text-center shadow-2xl border-2 border-pink-300 space-y-3.5">
-      <div class="text-5xl animate-bounce">🎉</div>
-      <h3 class="text-xl font-black bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-        Fulfillment Milestone!
+    <div class="glass-card max-w-sm w-full rounded-3xl p-6 text-center shadow-2xl border-2 border-teal-400 space-y-3.5">
+      <div class="text-5xl animate-bounce">🏆</div>
+      <h3 class="text-xl font-black bg-gradient-to-r from-teal-600 to-indigo-600 bg-clip-text text-transparent">
+        Target Milestone Crushed!
       </h3>
       <p id="celebrationSubtext" class="text-xs text-slate-600">
-        You achieved outstanding completion today. A special couple gift coupon is officially unlocked!
+        You hit serious numbers today! An official bestie privilege coupon has been unlocked!
       </p>
 
-      <div id="celebrationGiftCard" class="p-3.5 rounded-2xl bg-gradient-to-br from-pink-50 to-purple-50 border border-pink-200 text-left my-2 shadow-xs">
+      <div id="celebrationGiftCard" class="p-3.5 rounded-2xl bg-gradient-to-br from-teal-50 to-indigo-50 border border-teal-200 text-left my-2 shadow-xs">
         <!-- Injected via script -->
       </div>
 
-      <button onclick="closeCelebrationModal()" class="touch-target w-full py-2.5 rounded-xl bg-gradient-to-r from-pink-500 to-indigo-600 text-white font-extrabold text-xs sm:text-sm shadow-md">
-        Yay! Redeem with Partner 💖
+      <button onclick="closeCelebrationModal()" class="touch-target w-full py-2.5 rounded-xl bg-gradient-to-r from-teal-600 to-indigo-600 text-white font-extrabold text-xs sm:text-sm shadow-md">
+        Sweet! Claim with Bestie 🤜🤛
       </button>
     </div>
   </div>
@@ -624,7 +614,7 @@
       <div class="text-3xl">⚠️</div>
       <h4 class="text-base font-bold text-slate-800">Reset to Clean Zero?</h4>
       <p class="text-xs text-slate-500 leading-relaxed">
-        This wipes tasks, reflections, notes, and chart metrics back to zero so you can start fresh.
+        This wipes targets, bestie reviews, bulletin pings, and analytics back to absolute zero for a fresh start.
       </p>
       <div class="flex items-center justify-center gap-2 pt-2">
         <button onclick="closeResetModal()" class="touch-target px-3 py-1.5 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-100">Cancel</button>
@@ -636,9 +626,9 @@
   <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
     /* -------------------------------------------------------------
-       1. DATA STRUCTURE & CLEAN ZERO LOCALSTORAGE INITIALIZATION
+       1. DATA STRUCTURE & ZERO-STATE INITIALIZATION
        ------------------------------------------------------------- */
-    const STORAGE_KEY = 'grow_together_dumbo_butku_v3_mobile';
+    const STORAGE_KEY = 'grow_together_besties_v1';
 
     const formatDateKey = (date) => {
       const d = new Date(date);
@@ -654,24 +644,24 @@
     let selectedDateKey = getTodayKey();
     let currentActiveTab = 'tasks';
     let currentCategoryFilter = 'all';
-    let currentVibe = '🌱 Balanced';
-    let currentModalSticker = '💖 Sweet Love';
+    let currentVibe = '🔥 Beast Mode';
+    let currentModalSticker = '⚡ Lock In!';
 
     let trendChartInstance = null;
     let categoryChartInstance = null;
 
-    // Couple Rewards Catalog
-    const REWARD_TIERS = {
+    // Platonic Bestie Rewards Catalog
+    const BESTIE_REWARD_TIERS = {
       tier80: [
-        { id: 'massage', title: '💆 20-min Warm Head & Shoulder Massage', desc: 'No excuses from partner—total relaxation guaranteed!', icon: '💆' },
-        { id: 'cheat_treat', title: '🧁 Favorite Dessert / Cheat Treat', desc: 'Partner orders or prepares your ultimate sweet craving.', icon: '🍰' },
-        { id: 'sunset_walk', title: '🌇 Sunset Walk & Phone-Free Talk', desc: 'Holding hands and talking about future dreams uninterrupted.', icon: '🌅' },
-        { id: 'movie_pick', title: '🎬 Uncontested Movie Choice Night', desc: 'You get full rights to pick movie & snack tonight.', icon: '🍿' }
+        { id: 'chai_samosa', title: '☕ Chai & Snacks Treat on Loser', desc: 'The other bestie buys tea/coffee + snacks at your favorite spot.', icon: '☕' },
+        { id: 'playlist_dj', title: '🎧 Uncontested Car / Playlist DJ Rights', desc: 'You get 100% music playback control on next hangout or study session.', icon: '🎵' },
+        { id: 'bragging_rights', title: '🏆 24-Hour Supreme Bragging Rights', desc: 'Bestie must acknowledge you as the productivity champion all day.', icon: '🥇' },
+        { id: 'movie_pick', title: '🎬 Full Choice on Next Movie / Show', desc: 'Pick whatever you want to watch without any complaining from bestie.', icon: '🍿' }
       ],
       tier100: [
-        { id: 'custom_wish', title: '⭐ 1 Sovereign Golden Wish Granted!', desc: 'Partner must fulfill any sweet request without grumbling!', icon: '🌟' },
-        { id: 'breakfast_bed', title: '🥞 Royal Breakfast Served in Bed', desc: 'Warm tea/coffee & your favorite hot breakfast served lovingly.', icon: '☕' },
-        { id: 'romantic_dinner', title: '🕯️ Candlelit Home Cooked Dinner', desc: 'A special meal cooked and served with couple playlist vibes.', icon: '🍝' }
+        { id: 'golden_favor', title: '⭐ 1 Sovereign Golden Bestie Favor', desc: 'Bestie must fulfill any reasonable buddy favor or street food treat!', icon: '🌟' },
+        { id: 'forfeit_pushups', title: '💪 Bestie Forfeit: 25 Pushups or Chore', desc: 'Your slacking buddy must do 25 pushups or clean up/organize on demand!', icon: '💥' },
+        { id: 'food_treat', title: '🍕 Heavy Treat on Bestie (Pizza / Burgers)', desc: 'Full treat sponsored unconditionally for hitting 100% perfection!', icon: '🍔' }
       ]
     };
 
@@ -679,8 +669,8 @@
       const today = getTodayKey();
       const history = {};
       history[today] = {
-        dumbo: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🌱 Balanced' } },
-        butku: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🌱 Balanced' } },
+        dumbo: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🔥 Beast Mode' } },
+        butku: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🔥 Beast Mode' } },
         rewardsUnlocked: { dumbo: null, butku: null }
       };
 
@@ -707,8 +697,8 @@
         if (!parsed.history) parsed.history = {};
         if (!parsed.history[today]) {
           parsed.history[today] = {
-            dumbo: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🌱 Balanced' } },
-            butku: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🌱 Balanced' } },
+            dumbo: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🔥 Beast Mode' } },
+            butku: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🔥 Beast Mode' } },
             rewardsUnlocked: { dumbo: null, butku: null }
           };
         }
@@ -727,27 +717,21 @@
     let appState = loadState();
 
     /* -------------------------------------------------------------
-       2. TAB NAVIGATION (SYNCED MOBILE BOTTOM BAR & DESKTOP HEADER)
+       2. TAB NAVIGATION
        ------------------------------------------------------------- */
     function switchTab(tabId) {
       currentActiveTab = tabId;
 
-      // Hide all tabs
-      document.querySelectorAll('.tab-content').forEach(el => {
-        el.classList.add('hidden');
-      });
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
 
-      // Show targeted tab
       const target = document.getElementById(`tab-${tabId}`);
-      if (target) {
-        target.classList.remove('hidden');
-      }
+      if (target) target.classList.remove('hidden');
 
       // Update Mobile Nav
       document.querySelectorAll('.mob-nav-btn').forEach(btn => {
         const isSelected = btn.getAttribute('data-tab') === tabId;
         if (isSelected) {
-          btn.className = 'mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-pink-600 font-extrabold transition';
+          btn.className = 'mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-teal-600 font-extrabold transition';
         } else {
           btn.className = 'mob-nav-btn touch-target flex flex-col items-center justify-center rounded-xl py-1 text-slate-400 font-medium transition';
         }
@@ -763,7 +747,6 @@
         }
       });
 
-      // Refresh charts if opening analytics tab
       if (tabId === 'analytics') {
         setTimeout(renderCharts, 50);
       } else if (tabId === 'history') {
@@ -772,7 +755,7 @@
     }
 
     /* -------------------------------------------------------------
-       3. USER SWITCHING
+       3. USER SWITCHING (DUMBO vs BUTKU)
        ------------------------------------------------------------- */
     function switchUser(user) {
       currentUser = user;
@@ -789,17 +772,17 @@
         document.getElementById('currentUserAvatar').innerText = '🐘';
         document.getElementById('currentUserNameDisplay').innerHTML = 'Dumbo <span class="text-blue-500 font-semibold">(Rakeshkumar)</span>';
         document.getElementById('currentUserRoleTag').className = 'text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-blue-100 text-blue-700';
-        document.getElementById('feedbackTargetSub').innerText = 'Constructive Reflection for Dumbo (from Butku)';
-        document.getElementById('feedbackShineLabel').innerText = 'Where Dumbo shined today:';
+        document.getElementById('feedbackTargetSub').innerText = 'Bestie Review for Dumbo (written by Butku)';
+        document.getElementById('feedbackShineLabel').innerText = 'Where Dumbo crushed it today:';
       } else {
-        btnButku.className = 'touch-target flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-pink-600 shadow-xs border border-pink-200 transition-all';
+        btnButku.className = 'touch-target flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-teal-600 shadow-xs border border-teal-200 transition-all';
         btnDumbo.className = 'touch-target flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-500 hover:text-slate-800 transition-all';
 
         document.getElementById('currentUserAvatar').innerText = '🐧';
-        document.getElementById('currentUserNameDisplay').innerHTML = 'Butku <span class="text-pink-500 font-semibold">(Diya)</span>';
-        document.getElementById('currentUserRoleTag').className = 'text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-pink-100 text-pink-700';
-        document.getElementById('feedbackTargetSub').innerText = 'Constructive Reflection for Butku (from Dumbo)';
-        document.getElementById('feedbackShineLabel').innerText = 'Where Butku shined today:';
+        document.getElementById('currentUserNameDisplay').innerHTML = 'Butku <span class="text-teal-600 font-semibold">(Diya)</span>';
+        document.getElementById('currentUserRoleTag').className = 'text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-teal-100 text-teal-800';
+        document.getElementById('feedbackTargetSub').innerText = 'Bestie Review for Butku (written by Dumbo)';
+        document.getElementById('feedbackShineLabel').innerText = 'Where Butku crushed it today:';
       }
 
       renderNotificationBanner();
@@ -812,18 +795,18 @@
     }
 
     /* -------------------------------------------------------------
-       4. NOTIFICATION LOVE BANNER
+       4. TOP BESTIE BULLETIN NOTIFICATION BANNER
        ------------------------------------------------------------- */
     function renderNotificationBanner() {
       const banner = document.getElementById('partnerBanner');
       const msgData = currentUser === 'dumbo' ? appState.messages?.toDumbo : appState.messages?.toButku;
 
       if (!msgData || !msgData.text) {
-        banner.className = 'sticky top-0 z-40 transition-all duration-300 shadow-xs bg-pink-50/90 text-slate-600 border-b border-pink-100';
+        banner.className = 'sticky top-0 z-40 transition-all duration-300 shadow-xs bg-slate-100/90 text-slate-700 border-b border-slate-200';
         banner.innerHTML = `
           <div class="max-w-6xl mx-auto px-3.5 py-2 text-center text-xs flex items-center justify-center gap-2">
-            <span>💌 No note left yet for today. Leave a sweet message for your partner!</span>
-            <button onclick="openEndDayModal()" class="text-pink-600 font-bold underline hover:text-pink-700">Write Note</button>
+            <span>📣 No morning ping left yet. Post a motivation hype or friendly banter!</span>
+            <button onclick="openPingModal()" class="text-teal-700 font-bold underline hover:text-teal-800">Ping Bestie</button>
           </div>
         `;
         return;
@@ -831,22 +814,22 @@
 
       const isDumbo = currentUser === 'dumbo';
       const bgColor = isDumbo 
-        ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white' 
-        : 'bg-gradient-to-r from-pink-600 via-rose-500 to-amber-500 text-white';
+        ? 'bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900 text-white' 
+        : 'bg-gradient-to-r from-teal-700 via-emerald-700 to-slate-900 text-white';
 
       banner.className = `sticky top-0 z-40 transition-all duration-300 shadow-md ${bgColor}`;
       banner.innerHTML = `
         <div class="max-w-6xl mx-auto px-3.5 py-2 flex items-center justify-between gap-2 text-xs sm:text-sm">
           <div class="flex items-center gap-2 min-w-0">
-            <span class="text-base flex-shrink-0">💌</span>
+            <span class="text-base flex-shrink-0">📢</span>
             <div class="truncate">
-              <span class="font-extrabold uppercase text-[10px] tracking-wide opacity-90">${escapeHTML(msgData.from)}:</span>
+              <span class="font-extrabold uppercase text-[10px] tracking-wider text-teal-200">${escapeHTML(msgData.from)}'s Ping:</span>
               <span class="font-medium ml-1">${escapeHTML(msgData.text)}</span>
             </div>
           </div>
           <div class="flex items-center gap-2 flex-shrink-0">
             <span class="hidden xs:inline-block px-2 py-0.5 rounded-full bg-white/20 text-[10px] font-semibold">${escapeHTML(msgData.sticker)}</span>
-            <button onclick="openEndDayModal()" class="touch-target px-2.5 py-1 rounded-lg bg-white/20 hover:bg-white/30 text-xs font-bold transition">
+            <button onclick="openPingModal()" class="touch-target px-2.5 py-1 rounded-lg bg-white/20 hover:bg-white/30 text-xs font-bold transition">
               Reply
             </button>
           </div>
@@ -855,13 +838,13 @@
     }
 
     /* -------------------------------------------------------------
-       5. DATE LOGIC & HELPERS
+       5. DATE MANAGEMENT
        ------------------------------------------------------------- */
     function ensureDayStructure(dateKey) {
       if (!appState.history[dateKey]) {
         appState.history[dateKey] = {
-          dumbo: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🌱 Balanced' } },
-          butku: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🌱 Balanced' } },
+          dumbo: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🔥 Beast Mode' } },
+          butku: { tasks: [], feedbackGivenToPartner: { shine: '', mistake: '', vibe: '🔥 Beast Mode' } },
           rewardsUnlocked: { dumbo: null, butku: null }
         };
         saveState(appState);
@@ -917,9 +900,9 @@
       if (filtered.length === 0) {
         container.innerHTML = `
           <div class="text-center py-8 px-4 rounded-2xl border border-dashed border-slate-200 bg-white/50">
-            <div class="text-2xl mb-1.5">🌱</div>
-            <p class="text-xs font-bold text-slate-600">No tasks here yet!</p>
-            <p class="text-[11px] text-slate-400 mt-0.5">Type a task above and press "+ Add" to begin your streak.</p>
+            <div class="text-2xl mb-1.5">🚀</div>
+            <p class="text-xs font-bold text-slate-600">No targets here yet!</p>
+            <p class="text-[11px] text-slate-400 mt-0.5">Type your goal above and press "+ Add Target" to begin locking in.</p>
           </div>
         `;
       } else {
@@ -935,7 +918,7 @@
 
           item.innerHTML = `
             <label class="flex items-center gap-3 flex-1 min-w-0 cursor-pointer select-none">
-              <input type="checkbox" ${task.done ? 'checked' : ''} onchange="toggleTask('${task.id}')" class="touch-target w-5 h-5 rounded-lg text-pink-600 border-slate-300 focus:ring-pink-400 cursor-pointer" />
+              <input type="checkbox" ${task.done ? 'checked' : ''} onchange="toggleTask('${task.id}')" class="touch-target w-5 h-5 rounded-lg text-teal-600 border-slate-300 focus:ring-teal-400 cursor-pointer" />
               <div class="truncate">
                 <span class="text-xs sm:text-sm font-semibold ${task.done ? 'line-through text-slate-400' : 'text-slate-800'}">
                   ${escapeHTML(task.title)}
@@ -958,11 +941,11 @@
 
     function getCategoryColor(cat) {
       switch(cat) {
-        case 'Health': return 'text-emerald-600';
-        case 'Work': return 'text-blue-600';
-        case 'Personal': return 'text-purple-600';
-        case 'Habits': return 'text-amber-600';
-        case 'Relationship': return 'text-pink-600';
+        case 'Study/Work': return 'text-blue-600';
+        case 'Fitness': return 'text-emerald-600';
+        case 'Skills/CAD': return 'text-indigo-600';
+        case 'Personal Habits': return 'text-amber-600';
+        case 'Daily Grind': return 'text-teal-600';
         default: return 'text-slate-500';
       }
     }
@@ -1001,7 +984,7 @@
       renderTasks();
       updateMetricBadges();
       renderCharts();
-      showToast('Task added! Keep growing 🎯');
+      showToast('Target added! Time to lock in 🎯');
     }
 
     function toggleTask(id) {
@@ -1029,7 +1012,7 @@
       renderTasks();
       updateMetricBadges();
       renderCharts();
-      showToast('Task removed.');
+      showToast('Target removed.');
     }
 
     function updateDailyProgress() {
@@ -1047,20 +1030,20 @@
       const giftSub = document.getElementById('giftStatusSub');
 
       if (total === 0) {
-        giftTag.innerText = '0 Tasks';
+        giftTag.innerText = '0 Targets';
         giftTag.className = 'text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600';
-        giftTitle.innerText = 'Add tasks to start';
-        giftSub.innerText = '80% unlocks coupon';
+        giftTitle.innerText = 'Add targets to start';
+        giftSub.innerText = '80% unlocks bestie perk';
       } else if (pct >= 100) {
         giftTag.innerText = '100% ⭐';
         giftTag.className = 'text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-800 animate-pulse';
-        giftTitle.innerText = 'Jackpot Unlocked!';
-        giftSub.innerText = '1 Golden Custom Wish!';
+        giftTitle.innerText = 'Jackpot Favor!';
+        giftSub.innerText = 'Ultimate Favor Unlocked!';
       } else if (pct >= 80) {
         giftTag.innerText = 'Unlocked! 🎁';
         giftTag.className = 'text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800';
-        giftTitle.innerText = 'Couple Coupon Won!';
-        giftSub.innerText = 'Ready to redeem!';
+        giftTitle.innerText = 'Bestie Perk Won!';
+        giftSub.innerText = 'Claim your treat coupon!';
       } else {
         giftTag.innerText = `${pct}%`;
         giftTag.className = 'text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600';
@@ -1070,13 +1053,13 @@
     }
 
     /* -------------------------------------------------------------
-       7. CONFETTI & GIFT UNLOCKING
+       7. CONFETTI & PERK REWARD UNLOCKING
        ------------------------------------------------------------- */
     function checkAndTriggerCelebration(forceAlert) {
       const tasks = getDayTasks();
       const total = tasks.length;
       if (total === 0) {
-        if (forceAlert) showToast('Add and complete tasks to unlock rewards!');
+        if (forceAlert) showToast('Add and complete goals to unlock bestie perks!');
         return;
       }
       const completed = tasks.filter(t => t.done).length;
@@ -1084,17 +1067,17 @@
 
       if (pct >= 80) {
         confetti({
-          particleCount: 75,
-          spread: 60,
+          particleCount: 80,
+          spread: 70,
           origin: { y: 0.65 }
         });
 
         let rewardName = '';
         if (pct >= 100) {
-          const r = REWARD_TIERS.tier100[Math.floor(Math.random() * REWARD_TIERS.tier100.length)];
+          const r = BESTIE_REWARD_TIERS.tier100[Math.floor(Math.random() * BESTIE_REWARD_TIERS.tier100.length)];
           rewardName = r.title;
         } else {
-          const r = REWARD_TIERS.tier80[Math.floor(Math.random() * REWARD_TIERS.tier80.length)];
+          const r = BESTIE_REWARD_TIERS.tier80[Math.floor(Math.random() * BESTIE_REWARD_TIERS.tier80.length)];
           rewardName = r.title;
         }
 
@@ -1111,7 +1094,7 @@
         }
         renderGifts();
       } else if (forceAlert) {
-        showToast(`You're at ${pct}%. Reach 80% to claim today's couple reward! 💪💖`);
+        showToast(`Currently at ${pct}%. Hit 80% to force your bestie to pay up perks! 🔥`);
       }
     }
 
@@ -1120,14 +1103,14 @@
       const card = document.getElementById('celebrationGiftCard');
       const sub = document.getElementById('celebrationSubtext');
 
-      sub.innerText = `Outstanding! You achieved ${pct}% fulfillment today. Here is your earned privilege:`;
+      sub.innerText = `Crushed it! You achieved ${pct}% fulfillment today. Here is your official bestie coupon:`;
       card.innerHTML = `
         <div class="flex items-center gap-3">
           <span class="text-3xl">🎟️</span>
           <div>
-            <div class="text-[10px] uppercase font-bold text-pink-600">Official Couple Coupon</div>
+            <div class="text-[10px] uppercase font-bold text-teal-700">Official Bestie Coupon</div>
             <div class="text-xs sm:text-sm font-bold text-slate-800">${escapeHTML(rewardName)}</div>
-            <p class="text-[10px] text-slate-500 mt-0.5">Earned by ${currentUser === 'dumbo' ? 'Dumbo (Rakesh)' : 'Butku (Diya)'}</p>
+            <p class="text-[10px] text-slate-500 mt-0.5">Won by ${currentUser === 'dumbo' ? 'Dumbo (Rakesh)' : 'Butku (Diya)'}</p>
           </div>
         </div>
       `;
@@ -1146,28 +1129,28 @@
 
       const cards = [
         {
-          title: currentDayReward || '🔒 Reach 80% to Unlock Today\'s Coupon',
+          title: currentDayReward || '🔒 Reach 80% to Unlock Today\'s Bestie Perk',
           status: currentDayReward ? 'Unlocked for Today' : 'Locked',
           icon: currentDayReward ? '🎁' : '🔒',
           active: !!currentDayReward
         },
         {
-          title: '💆 20-Min Warm Shoulder & Head Massage',
-          status: 'Permanent Couple Privilege',
-          icon: '💆',
-          active: !!currentDayReward
-        },
-        {
-          title: '☕ Hot Brewed Chai & Favorite Breakfast',
-          status: 'Special Morning Privilege',
+          title: '☕ Chai & Street Snacks Treat on Loser',
+          status: 'Classic Buddy Treat',
           icon: '☕',
           active: !!currentDayReward
         },
         {
-          title: '⭐ 1 Sovereign Custom Wish Granted by Partner',
-          status: '100% Daily Perfection',
+          title: '🎧 Full Car / Study Playlist Rights',
+          status: 'DJ Domination',
+          icon: '🎵',
+          active: !!currentDayReward
+        },
+        {
+          title: '⭐ 1 Sovereign Golden Bestie Favor',
+          status: '100% Perfection Jackpot',
           icon: '🌟',
-          active: currentDayReward && currentDayReward.includes('Wish')
+          active: currentDayReward && currentDayReward.includes('Golden')
         }
       ];
 
@@ -1175,15 +1158,15 @@
         const div = document.createElement('div');
         div.className = `p-3.5 rounded-2xl border transition-all flex items-start gap-3 ${
           c.active 
-            ? 'bg-gradient-to-br from-pink-50 to-purple-50 border-pink-200 shadow-xs' 
+            ? 'bg-gradient-to-br from-teal-50 to-indigo-50 border-teal-200 shadow-xs' 
             : 'bg-slate-50/70 border-slate-200 opacity-60'
         }`;
         div.innerHTML = `
           <div class="text-2xl p-2 rounded-xl bg-white shadow-xs">${c.icon}</div>
           <div class="min-w-0">
-            <div class="text-[9px] uppercase font-bold tracking-wider ${c.active ? 'text-pink-600' : 'text-slate-400'}">${c.status}</div>
+            <div class="text-[9px] uppercase font-bold tracking-wider ${c.active ? 'text-teal-700' : 'text-slate-400'}">${c.status}</div>
             <h5 class="text-xs sm:text-sm font-bold text-slate-800 leading-snug mt-0.5 truncate">${escapeHTML(c.title)}</h5>
-            <p class="text-[10px] text-slate-500 mt-0.5">Valid for Dumbo &amp; Butku</p>
+            <p class="text-[10px] text-slate-500 mt-0.5">Binding Bestie Contract</p>
           </div>
         `;
         container.appendChild(div);
@@ -1191,25 +1174,25 @@
     }
 
     /* -------------------------------------------------------------
-       8. MUTUAL REFLECTION & MISTAKE LEARNING
+       8. MUTUAL ACCOUNTABILITY & REAL TALK FEEDBACK
        ------------------------------------------------------------- */
     function renderFeedbackInputs() {
       ensureDayStructure(selectedDateKey);
       const partnerKey = currentUser === 'dumbo' ? 'butku' : 'dumbo';
-      const feedback = appState.history[selectedDateKey][partnerKey]?.feedbackGivenToPartner || { shine: '', mistake: '', vibe: '🌱 Balanced' };
+      const feedback = appState.history[selectedDateKey][partnerKey]?.feedbackGivenToPartner || { shine: '', mistake: '', vibe: '🔥 Beast Mode' };
 
       document.getElementById('feedbackShineInput').value = feedback.shine || '';
       document.getElementById('feedbackImproveInput').value = feedback.mistake || '';
-      selectVibe(feedback.vibe || '🌱 Balanced');
+      selectVibe(feedback.vibe || '🔥 Beast Mode');
     }
 
     function selectVibe(vibeText) {
       currentVibe = vibeText;
       document.querySelectorAll('.vibe-btn').forEach(btn => {
         if (btn.getAttribute('title') && vibeText.includes(btn.getAttribute('title').split(' ')[0])) {
-          btn.classList.add('bg-pink-100', 'border-pink-300');
+          btn.classList.add('bg-teal-100', 'border-teal-300');
         } else {
-          btn.classList.remove('bg-pink-100', 'border-pink-300');
+          btn.classList.remove('bg-teal-100', 'border-teal-300');
         }
       });
     }
@@ -1229,40 +1212,40 @@
 
       saveState(appState);
       renderHistoryLog();
-      showToast('💖 Reflection saved! Helping each other grow without fear.');
+      showToast('🔥 Bestie review saved! True friends make each other better.');
     }
 
     /* -------------------------------------------------------------
-       9. PARTNER LOVE NOTE MODAL
+       9. BESTIE MORNING PING MODAL
        ------------------------------------------------------------- */
-    function openEndDayModal() {
+    function openPingModal() {
       const isDumbo = currentUser === 'dumbo';
       const toName = isDumbo ? 'Butku (Diya)' : 'Dumbo (Rakesh)';
       const fromName = isDumbo ? 'Dumbo (Rakesh)' : 'Butku (Diya)';
       document.getElementById('modalFromToLabel').innerText = `From ${fromName} to ${toName}:`;
-      document.getElementById('modalPartnerMessage').value = '';
-      document.getElementById('endDayModal').classList.remove('hidden');
+      document.getElementById('modalPingMessage').value = '';
+      document.getElementById('pingModal').classList.remove('hidden');
     }
 
-    function closeEndDayModal() {
-      document.getElementById('endDayModal').classList.add('hidden');
+    function closePingModal() {
+      document.getElementById('pingModal').classList.add('hidden');
     }
 
     function selectModalSticker(stk) {
       currentModalSticker = stk;
       document.querySelectorAll('.modal-stk').forEach(b => {
         if (b.innerText.includes(stk.split(' ')[0])) {
-          b.className = 'touch-target modal-stk p-2 rounded-xl bg-pink-100 border border-pink-300';
+          b.className = 'touch-target modal-stk p-2 rounded-xl bg-teal-100 border border-teal-300';
         } else {
           b.className = 'touch-target modal-stk p-2 rounded-xl bg-white border border-slate-200';
         }
       });
     }
 
-    function saveNightMessage() {
-      const msg = document.getElementById('modalPartnerMessage').value.trim();
+    function savePingMessage() {
+      const msg = document.getElementById('modalPingMessage').value.trim();
       if (!msg) {
-        showToast('Please enter a kind message!');
+        showToast('Please type a message or challenge for your bestie!');
         return;
       }
 
@@ -1279,9 +1262,9 @@
       };
 
       saveState(appState);
-      closeEndDayModal();
+      closePingModal();
       renderNotificationBanner();
-      showToast(`💌 Delivered! ${isDumbo ? 'Butku' : 'Dumbo'} will see this message!`);
+      showToast(`📢 Sent! ${isDumbo ? 'Butku' : 'Dumbo'} will see this on the top bulletin!`);
     }
 
     /* -------------------------------------------------------------
@@ -1315,12 +1298,12 @@
         dodSub.innerText = 'Fresh start today';
       } else if (diff >= 0) {
         dodVal.innerText = `+${diff}%`;
-        dodBadge.innerText = 'Growing 🚀';
+        dodBadge.innerText = 'Leveling Up 🚀';
         dodBadge.className = 'text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700';
         dodSub.innerText = `${todayPct}% vs ${prevPct}% yday`;
       } else {
         dodVal.innerText = `${diff}%`;
-        dodBadge.innerText = 'Recover 🌱';
+        dodBadge.innerText = 'Don\'t Slack ⚠️';
         dodBadge.className = 'text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-rose-100 text-rose-700';
         dodSub.innerText = `${todayPct}% vs ${prevPct}% yday`;
       }
@@ -1362,12 +1345,12 @@
       }
       document.getElementById('streakCountValue').innerText = `${streak} ${streak === 1 ? 'Day' : 'Days'}`;
 
-      document.getElementById('statDumboTasks').innerText = `${dumboTotalDone} done`;
-      document.getElementById('statButkuTasks').innerText = `${butkuTotalDone} done`;
+      document.getElementById('statDumboTasks').innerText = `${dumboTotalDone} completed`;
+      document.getElementById('statButkuTasks').innerText = `${butkuTotalDone} completed`;
     }
 
     /* -------------------------------------------------------------
-       11. RESPONSIVE CHART.JS RENDERING
+       11. RESPONSIVE CHART.JS CHARTS
        ------------------------------------------------------------- */
     function renderCharts() {
       const dates = [];
@@ -1402,23 +1385,23 @@
               {
                 label: 'Dumbo',
                 data: dumboData,
-                borderColor: '#3b82f6',
-                backgroundColor: 'rgba(59, 130, 246, 0.08)',
+                borderColor: '#2563eb',
+                backgroundColor: 'rgba(37, 99, 235, 0.08)',
                 borderWidth: 2.5,
                 fill: true,
                 tension: 0.35,
-                pointBackgroundColor: '#2563eb',
+                pointBackgroundColor: '#1d4ed8',
                 pointRadius: 3
               },
               {
                 label: 'Butku',
                 data: butkuData,
-                borderColor: '#ec4899',
-                backgroundColor: 'rgba(236, 72, 153, 0.08)',
+                borderColor: '#0d9488',
+                backgroundColor: 'rgba(13, 148, 136, 0.08)',
                 borderWidth: 2.5,
                 fill: true,
                 tension: 0.35,
-                pointBackgroundColor: '#db2777',
+                pointBackgroundColor: '#0f766e',
                 pointRadius: 3
               }
             ]
@@ -1455,11 +1438,11 @@
 
       // Doughnut Category Chart
       const catCounts = {
-        'Health': 0,
-        'Work': 0,
-        'Personal': 0,
-        'Habits': 0,
-        'Relationship': 0
+        'Study/Work': 0,
+        'Fitness': 0,
+        'Skills/CAD': 0,
+        'Personal Habits': 0,
+        'Daily Grind': 0
       };
 
       let totalDone = 0;
@@ -1486,7 +1469,7 @@
         const chartVals = isEmpty ? [1, 1, 1, 1, 1] : Object.values(catCounts);
         const chartColors = isEmpty 
           ? ['#f1f5f9', '#f1f5f9', '#f1f5f9', '#f1f5f9', '#f1f5f9'] 
-          : ['#10b981', '#3b82f6', '#a855f7', '#f59e0b', '#ec4899'];
+          : ['#3b82f6', '#10b981', '#6366f1', '#f59e0b', '#14b8a6'];
 
         categoryChartInstance = new Chart(ctxCat, {
           type: 'doughnut',
@@ -1522,8 +1505,8 @@
         const emptyLabel = document.getElementById('categoryEmptyLabel');
         if (emptyLabel) {
           emptyLabel.innerText = isEmpty 
-            ? '0 completed tasks. Tick off goals to build your wheel!' 
-            : `${totalDone} total tasks crushed across life domains`;
+            ? '0 completed targets. Complete goals to build your bestie wheel!' 
+            : `${totalDone} total targets crushed across all categories`;
         }
       }
     }
@@ -1549,7 +1532,7 @@
         tbody.innerHTML = `
           <tr>
             <td colspan="6" class="py-6 text-center text-slate-400 text-xs">
-              No historical data yet. Add and check tasks to generate your couple memory log! 🌱
+              No historical data yet. Check off targets to generate your bestie track record! 🚀
             </td>
           </tr>
         `;
@@ -1567,13 +1550,13 @@
 
         const fbD = dData.dumbo?.feedbackGivenToPartner?.shine || dData.dumbo?.feedbackGivenToPartner?.mistake;
         const fbB = dData.butku?.feedbackGivenToPartner?.shine || dData.butku?.feedbackGivenToPartner?.mistake;
-        const fbPresent = (fbD || fbB) ? '✨ Logged' : '<span class="text-slate-400">Pending</span>';
+        const fbPresent = (fbD || fbB) ? '🔥 Reviewed' : '<span class="text-slate-400">Pending</span>';
 
         const tr = document.createElement('tr');
         tr.className = 'hover:bg-slate-50 transition-colors';
         tr.innerHTML = `
           <td class="py-2.5 px-3 font-bold text-slate-800 whitespace-nowrap">
-            ${dStr} ${dStr === getTodayKey() ? '<span class="ml-1 text-[9px] text-pink-600 bg-pink-50 px-1 py-0.2 rounded-full">Today</span>' : ''}
+            ${dStr} ${dStr === getTodayKey() ? '<span class="ml-1 text-[9px] text-teal-700 bg-teal-50 px-1 py-0.2 rounded-full">Today</span>' : ''}
           </td>
           <td class="py-2.5 px-2">
             <span class="font-bold ${dumboPct >= 80 ? 'text-blue-600' : 'text-slate-600'}">
@@ -1581,7 +1564,7 @@
             </span>
           </td>
           <td class="py-2.5 px-2">
-            <span class="font-bold ${butkuPct >= 80 ? 'text-pink-600' : 'text-slate-600'}">
+            <span class="font-bold ${butkuPct >= 80 ? 'text-teal-600' : 'text-slate-600'}">
               ${butkuPct}%
             </span>
           </td>
@@ -1592,7 +1575,7 @@
             ${fbPresent}
           </td>
           <td class="py-2.5 px-3 text-right whitespace-nowrap">
-            <button onclick="viewDateHistory('${dStr}')" class="touch-target px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-pink-50 hover:text-pink-600 font-bold text-[10px] shadow-xs">
+            <button onclick="viewDateHistory('${dStr}')" class="touch-target px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-teal-50 hover:text-teal-700 font-bold text-[10px] shadow-xs">
               Open 📂
             </button>
           </td>
@@ -1609,7 +1592,7 @@
     }
 
     /* -------------------------------------------------------------
-       13. BACKUP, EXPORT & RESET ACTIONS
+       13. SETTINGS, BACKUP & EXPORT
        ------------------------------------------------------------- */
     function toggleActionMenu() {
       const menu = document.getElementById('actionMenuDropdown');
@@ -1627,11 +1610,11 @@
       const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
       const downloadAnchor = document.createElement('a');
       downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", `grow_together_backup_${getTodayKey()}.json`);
+      downloadAnchor.setAttribute("download", `grow_together_besties_backup_${getTodayKey()}.json`);
       document.body.appendChild(downloadAnchor);
       downloadAnchor.click();
       downloadAnchor.remove();
-      showToast('Backup exported! Keep it safe 💾');
+      showToast('Backup saved! Keep your records safe 💾');
     }
 
     function importDataBackup(event) {
@@ -1646,7 +1629,7 @@
             appState = parsed;
             saveState(appState);
             switchUser(appState.activeUser || 'dumbo');
-            showToast('Backup restored successfully! 💖');
+            showToast('Backup restored successfully! 🤝');
           } else {
             showToast('Invalid backup file structure.');
           }
@@ -1674,7 +1657,7 @@
       closeResetModal();
       switchUser('dumbo');
       switchTab('tasks');
-      showToast('All data reset to zero. Completely clean start! 💖');
+      showToast('All data reset to zero. Clean slate ready! 🚀');
     }
 
     /* -------------------------------------------------------------
@@ -1682,9 +1665,9 @@
        ------------------------------------------------------------- */
     function showToast(msg) {
       const toast = document.createElement('div');
-      toast.className = 'fixed bottom-20 md:bottom-6 right-4 left-4 md:left-auto z-50 bg-slate-950 text-white text-xs font-bold px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-2.5 border border-slate-800 max-w-sm transition-all duration-300';
+      toast.className = 'fixed bottom-20 md:bottom-6 right-4 left-4 md:left-auto z-50 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-2.5 border border-slate-700 max-w-sm transition-all duration-300';
       toast.innerHTML = `
-        <span class="text-lg">🌸</span>
+        <span class="text-lg">🤝</span>
         <div class="flex-1">${escapeHTML(msg)}</div>
       `;
       document.body.appendChild(toast);
